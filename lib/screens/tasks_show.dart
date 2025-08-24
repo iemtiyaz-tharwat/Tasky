@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:tasky/screens/add_task.dart';
 
-class OnlyFloatingButton extends StatelessWidget {
-  const OnlyFloatingButton({super.key});
+class TaskShow extends StatefulWidget {
+  const TaskShow({super.key});
+
+  @override
+  State<TaskShow> createState() => _TaskShowState();
+}
+
+class _TaskShowState extends State<TaskShow> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -10,9 +17,13 @@ class OnlyFloatingButton extends StatelessWidget {
         //Temporary arrow back
         appBar: AppBar(
           backgroundColor: Color(0xff181818),
-          leading: IconButton(onPressed:() {
-            Navigator.pop(context);
-          }, icon: Icon(Icons.arrow_back), color: Colors.white,),
+          leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back),
+            color: Colors.white,
+          ),
         ),
         body: Padding(
           padding: EdgeInsets.all(16),
@@ -49,31 +60,35 @@ class OnlyFloatingButton extends StatelessWidget {
                   ),
                 ),
               ),
-            ]
+            ],
           ),
         ),
-         bottomNavigationBar : SizedBox(
+        bottomNavigationBar: SizedBox(
           height: 85,
-           child: BottomNavigationBar(
-            currentIndex: 0,
+          child: BottomNavigationBar(
+            currentIndex: currentIndex, //الي انا واقف عنده
+            onTap: (index) {
+              //لما أضعط عالإندكس ف قيمة الإنديكس دي هتبقى المفروض هي قيمة الcurrentIndex الجديدة
+            //  currentIndex = index; //الي انا عايزة أروحله لما أضغط على حاجة مختلفة، مش هيأبديت فوق عشان دا خارج السكوب بتاعه
+              //ف احنا عشان نخليه يطلع فوق و يغيره للقيمة الجديدة عايزين حاجة تعمل ريبيلد للاسكرين ف دا هيكون عن طريق ال سِت استيت
+              setState((){ 
+                currentIndex = index;
+              });
+            },
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Color(0xff15B86C),
             unselectedItemColor: Colors.white,
-            iconSize: 35,
-            //selectedIconTheme: IconThemeData(
-           //   size: 35
-            //),
-            unselectedIconTheme: IconThemeData(
-              size: 28
-            ),
+            selectedIconTheme: IconThemeData(size: 35),
+            unselectedIconTheme: IconThemeData(size: 28),
+
             items: [
-           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-           BottomNavigationBarItem(icon: Icon(Icons.list), label: "To Do"),
-           BottomNavigationBarItem(icon: Icon(Icons.done), label: "Completed"),
-           BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
-           ]
-           ),
-         )
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+              BottomNavigationBarItem(icon: Icon(Icons.list), label: "To Do"),
+              BottomNavigationBarItem(icon: Icon(Icons.done), label: "Completed"),
+              BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+              ],
+          ),
+        ),
       ),
     );
   }

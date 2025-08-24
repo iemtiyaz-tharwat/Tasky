@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tasky/customWidgets/custom_button_container.dart';
 import 'package:tasky/customWidgets/custom_text_form_field.dart';
-import 'package:tasky/screens/only_floating_button.dart';
+import 'package:tasky/screens/tasks_show.dart';
 
 class TaskyName extends StatefulWidget {
   const TaskyName({super.key});
@@ -114,7 +114,7 @@ class _TaskyNameState extends State<TaskyName> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return OnlyFloatingButton();
+                            return TaskShow();
                           },
                         ),
                       );
