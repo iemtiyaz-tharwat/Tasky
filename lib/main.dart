@@ -5,7 +5,7 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(create: (BuildContext context){
-    return TaskController();
+    return NewTaskController();
   },
     child:  TaskyApp()));
 }

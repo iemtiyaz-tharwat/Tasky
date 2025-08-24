@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tasky/screens/add_task.dart';
+import 'package:tasky/provider/custom_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:tasky/customWidgets/custom_text_style.dart';
 
 class TaskShow extends StatefulWidget {
-  const TaskShow({super.key});
-
+   TaskShow({super.key , required this.userName});
+   String userName;
   @override
-  State<TaskShow> createState() => _TaskShowState();
+  State<TaskShow> createState() => _TaskShowState(
+    userName: userName,
+  );
 }
 
-class _TaskShowState extends State<TaskShow> {
+class _TaskShowState extends State<TaskShow> {_TaskShowState({required this.userName});
   int currentIndex = 0;
+  String userName;
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        //Temporary arrow back
+    return Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xff181818),
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back),
-            color: Colors.white,
-          ),
+          leading:
+          Container( width: 40, height: 40, decoration: BoxDecoration(color: Colors.grey, shape: BoxShape.circle),
+            child: IconButton( icon: Icon(Icons.person), onPressed:() {}, color: Colors.white,)), 
+          title: ListTile(title: Text("Good Morning $userName", style: TextStyle(fontSize: 20, color: Colors.white),),),
         ),
         body: Padding(
           padding: EdgeInsets.all(16),
@@ -91,7 +92,6 @@ class _TaskShowState extends State<TaskShow> {
               ],
           ),
         ),
-      ),
     );
   }
 }

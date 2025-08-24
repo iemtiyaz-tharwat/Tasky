@@ -6,10 +6,12 @@ class Customtextformfield extends StatelessWidget {
     required this.hintText,
     //required this.height,
     required this.maxLines,
+    required this.controller
   });
   final String hintText;
   //final double height;
   final maxLines;
+  final TextEditingController? controller;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -19,6 +21,7 @@ class Customtextformfield extends StatelessWidget {
           color: Color.fromARGB(255, 252, 252, 255),
           fontSize: 20,
         ),
+        controller: controller,
         maxLines: maxLines,
         keyboardType: TextInputType.text,
         keyboardAppearance: Brightness.dark,

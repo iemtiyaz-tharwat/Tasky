@@ -13,6 +13,7 @@ class TaskyName extends StatefulWidget {
 
 class _TaskyNameState extends State<TaskyName> {
   GlobalKey<FormState> formKey = GlobalKey();
+  final userNameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -101,6 +102,7 @@ class _TaskyNameState extends State<TaskyName> {
                 Form(
                   key: formKey,
                   child: Customtextformfield(
+                    controller: userNameController,
                     hintText: 'e.g. Sarah Khalid',
                     //height: 60,
                     maxLines: 1,
@@ -114,7 +116,7 @@ class _TaskyNameState extends State<TaskyName> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return TaskShow();
+                            return TaskShow(userName: userNameController.text,);
                           },
                         ),
                       );

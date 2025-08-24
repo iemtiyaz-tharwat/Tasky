@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 //import 'package:tasky2/customWidgets/custom_button_container.dart';
 import 'package:tasky/customWidgets/custom_text_form_field.dart';
 import 'package:tasky/customWidgets/custom_text_style.dart';
+import 'package:provider/provider.dart';
+import 'package:tasky/provider/custom_provider.dart';
 
 class AddTaskScreen extends StatefulWidget {
   const AddTaskScreen({super.key});
@@ -12,9 +14,10 @@ class AddTaskScreen extends StatefulWidget {
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
   bool isSwitched = false;
-  GlobalKey<FormState> taskNameKey = GlobalKey();
-  GlobalKey<FormState> taskDescriptionKey = GlobalKey();
-
+  GlobalKey<FormState> formKey = GlobalKey();
+  //GlobalKey<FormState> taskDescriptionKey = GlobalKey();
+  final _taskNameController = TextEditingController();
+  final _descriptionController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +49,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               SizedBox(height: 15),
               Form(
-                key: taskNameKey,
+                key: formKey,
                 child: Customtextformfield(
+                  controller: _taskNameController,
                   hintText: "Finish UI design for login screen",
                   //height: 64,
                   maxLines: 1,
@@ -61,8 +65,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               SizedBox(height: 15),
               Form(
-                key: taskDescriptionKey,
+                key: formKey,
                 child: Customtextformfield(
+                  controller: _descriptionController,
                   hintText:
                       'Finish onboarding UI and hand off to devs by Thursday.',
                   //height: 160,
@@ -101,11 +106,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   padding: EdgeInsets.symmetric(vertical: 12),
                 ),
                 onPressed: () {
-                  if (taskNameKey.currentState!.validate() &&
-                      taskDescriptionKey.currentState!.validate()) {
+                  if (formKey.currentState!.validate()) {
+                    context.read<NewTaskController>().add(NewTaskModel(taskName: _taskNameController.text, taskDescription: _descriptionController.text));
                   } else {
                     print("Not valid");
                   }
+                  
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
