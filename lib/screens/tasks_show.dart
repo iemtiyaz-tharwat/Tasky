@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:tasky/screens/add_task.dart';
 
 class TaskShow extends StatefulWidget {
@@ -67,8 +68,8 @@ class _TaskShowState extends State<TaskShow> {
           height: 85,
           child: BottomNavigationBar(
             currentIndex: currentIndex, //الي انا واقف عنده
-            onTap: (index) {
-              //لما أضعط عالإندكس ف قيمة الإنديكس دي هتبقى المفروض هي قيمة الcurrentIndex الجديدة
+            onTap: (index) {                //لما أضعط عالإندكس ف قيمة الإنديكس دي هتبقى المفروض هي قيمة الcurrentIndex الجديدة
+              SystemSound.play;   //to stop the tap sound
             //  currentIndex = index; //الي انا عايزة أروحله لما أضغط على حاجة مختلفة، مش هيأبديت فوق عشان دا خارج السكوب بتاعه
               //ف احنا عشان نخليه يطلع فوق و يغيره للقيمة الجديدة عايزين حاجة تعمل ريبيلد للاسكرين ف دا هيكون عن طريق ال سِت استيت
               setState((){ 
@@ -78,9 +79,10 @@ class _TaskShowState extends State<TaskShow> {
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Color(0xff15B86C),
             unselectedItemColor: Colors.white,
-            selectedIconTheme: IconThemeData(size: 35),
-            unselectedIconTheme: IconThemeData(size: 28),
-
+            selectedIconTheme: IconThemeData(size: 37),
+            unselectedIconTheme: IconThemeData(size: 27),
+            enableFeedback: false,     //to enable the tap sound stopping action
+            
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
               BottomNavigationBarItem(icon: Icon(Icons.list), label: "To Do"),
