@@ -81,7 +81,7 @@ class _TaskShowState extends State<TaskShow> {
             unselectedItemColor: Colors.white,
             selectedIconTheme: IconThemeData(size: 37),
             unselectedIconTheme: IconThemeData(size: 27),
-            enableFeedback: false,     //to enable the tap sound stopping action
+            enableFeedback: false,     //to enable the tap sound stopping action   
             
             items: [
               BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
