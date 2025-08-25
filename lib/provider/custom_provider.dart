@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 class NewTaskModel {
   final String? taskName;
   final String? taskDescription;
-  NewTaskModel({this.taskName, this.taskDescription});
+  bool isCompleted;
+  NewTaskModel({this.taskName, this.taskDescription , this.isCompleted = false});
 
   // @override          //to show them as strings not instances if i want 
   // String toString() {
@@ -22,6 +23,11 @@ class NewTaskController with ChangeNotifier {
   }
   void removeAll(){
     newTasks.clear();
+    notifyListeners();
+  }
+
+  void TaskCompletion(int index) {
+    newTasks[index].isCompleted = !newTasks[index].isCompleted;
     notifyListeners();
   }
 }

@@ -14,8 +14,8 @@ class AddTaskScreen extends StatefulWidget {
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
   bool isSwitched = false;
-  GlobalKey<FormState> formKey = GlobalKey();
-  //GlobalKey<FormState> taskDescriptionKey = GlobalKey();
+  GlobalKey<FormState> taskNameKey = GlobalKey();
+  GlobalKey<FormState> taskDescriptionKey = GlobalKey();
   final _taskNameController = TextEditingController();
   final _descriptionController = TextEditingController();
   @override
@@ -49,7 +49,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               SizedBox(height: 15),
               Form(
-                key: formKey,
+                key: taskNameKey,
                 child: Customtextformfield(
                   controller: _taskNameController,
                   hintText: "Finish UI design for login screen",
@@ -65,7 +65,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               SizedBox(height: 15),
               Form(
-                key: formKey,
+                key: taskDescriptionKey,
                 child: Customtextformfield(
                   controller: _descriptionController,
                   hintText:
@@ -106,8 +106,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   padding: EdgeInsets.symmetric(vertical: 12),
                 ),
                 onPressed: () {
-                  if (formKey.currentState!.validate()) {
+                  if (taskNameKey.currentState!.validate() && taskDescriptionKey.currentState!.validate() ) {
                     context.read<NewTaskController>().add(NewTaskModel(taskName: _taskNameController.text, taskDescription: _descriptionController.text));
+                    Navigator.pop(context);
                   } else {
                     print("Not valid");
                   }
