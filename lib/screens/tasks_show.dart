@@ -4,7 +4,6 @@ import 'package:tasky/screens/add_task.dart';
 import 'package:tasky/provider/custom_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/customWidgets/custom_text_style.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 
 class TaskShow extends StatefulWidget {
