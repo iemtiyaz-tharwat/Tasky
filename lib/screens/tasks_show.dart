@@ -20,7 +20,7 @@ class _TaskShowState extends State<TaskShow> {
   @override
   Widget build(BuildContext context) {
     return Consumer<NewTaskController>(
-      builder: (context, newTaskController, child) {
+      builder: (context, NewTaskController newTaskController, child) {
         return Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
