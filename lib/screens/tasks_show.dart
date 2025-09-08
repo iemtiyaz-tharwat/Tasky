@@ -119,7 +119,7 @@ class _TaskShowState extends State<TaskShow> {
                                   onChanged: (value) {
                                     context
                                         .read<NewTaskController>()
-                                        .TaskCompletion(index);
+                                        .taskCompletion(index);
                                   },
                                 ),
 
