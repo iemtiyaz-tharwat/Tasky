@@ -4,8 +4,8 @@ import 'package:tasky/screens/tasky_name.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (BuildContext context){
-    return NewTaskController();
+  runApp(ChangeNotifierProvider(create: (BuildContext context){  //to create the object of the controller  that i will work on.
+    return NewTaskController();              //نفهم كويس ايه الكونترولر دا...  
   },
     child:  TaskyApp()));
 }

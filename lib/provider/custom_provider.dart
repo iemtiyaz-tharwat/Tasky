@@ -13,7 +13,7 @@ class NewTaskModel {
   // }
 }
 
-class NewTaskController with ChangeNotifier {
+class NewTaskController extends ChangeNotifier {     //أفتكر ايه الفرق بين with و extends 
 
   List<NewTaskModel> newTasks = [];
 
@@ -26,7 +26,7 @@ class NewTaskController with ChangeNotifier {
     notifyListeners();
   }
 
-  void TaskCompletion(int index) {
+  void taskCompletion(int index) {
     newTasks[index].isCompleted = !newTasks[index].isCompleted;
     notifyListeners();
   }
