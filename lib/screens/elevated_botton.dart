@@ -44,6 +44,51 @@ class ElevatedBotton extends StatelessWidget {
           
         ],
       ),
+      appBar: AppBar(
+            automaticallyImplyLeading: false,
+            backgroundColor: Color(0xff181818),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CircleAvatar(
+                  radius: 25,
+                  backgroundImage: AssetImage("assets/images/fav.jpg"),
+                ),
+                SizedBox(width: 10),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Good Morning, ",
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        //fontFamily: 'Poppins',
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "One task at a time. One step closer.",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontFamily: 'Poppins',
+                        color: Colors.white70,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(width: 3),
+                IconButton(
+                  iconSize: 33,
+                  onPressed: () {},
+                  icon: Icon(Icons.settings, color: Colors.white),
+                ),
+              ],
+            ),
+          ),
+              
     );
   }
 }
+

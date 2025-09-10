@@ -4,15 +4,25 @@ import 'package:tasky/screens/tasky_name.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(create: (BuildContext context){  //to create the object of the controller  that i will work on.
-    return NewTaskController();              //نفهم كويس ايه الكونترولر دا...  
-  },
-    child:  TaskyApp()));
+  runApp(
+    ChangeNotifierProvider(
+      create: (BuildContext context) {
+        //to create the object of the controller  that i will work on.
+        return NewTaskController(); //نفهم كويس ايه الكونترولر دا...
+      },
+      child: TaskyApp(),
+    ),
+  );
 }
 
-class TaskyApp extends StatelessWidget {
+class TaskyApp extends StatefulWidget {
   const TaskyApp({super.key});
 
+  @override
+  State<TaskyApp> createState() => _TaskyAppState();
+}
+
+class _TaskyAppState extends State<TaskyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {

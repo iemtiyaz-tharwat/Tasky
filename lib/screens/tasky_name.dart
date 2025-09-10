@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tasky/customWidgets/custom_button_container.dart';
 import 'package:tasky/customWidgets/custom_text_form_field.dart';
-import 'package:tasky/screens/tasks_show.dart';
+import 'package:tasky/screens/build_page.dart';
 
 class TaskyName extends StatefulWidget {
   const TaskyName({super.key});
@@ -116,7 +116,7 @@ class _TaskyNameState extends State<TaskyName> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return TaskShow(userName: userNameController.text,);
+                            return BuildPage(userName: userNameController.text,);
                           },
                         ),
                       );
