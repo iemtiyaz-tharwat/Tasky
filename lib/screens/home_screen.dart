@@ -6,9 +6,7 @@ import 'package:tasky/screens/add_task.dart';
 import 'package:tasky/provider/custom_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/customWidgets/custom_text_style.dart';
-import 'package:tasky/screens/completed_tasks.dart';
 import 'package:tasky/screens/profile_screen.dart';
-import 'package:tasky/custom_clasess/achieved_class.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.userName});
   final String userName;
@@ -114,9 +112,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: Consumer<NewTaskController>(
                       builder: (context, newTaskController, child) {
-                       int totalTasks = newTaskController.newTasks.length;
-                       int completedTasks = newTaskController.newTasks.where((task) => task.isCompleted).length;
+                       
                         final allTasks = newTaskController.newTasks;
+                        int totalTasks = newTaskController.newTasks.length;
+                       final completedTasks = allTasks.where((task) => task.isCompleted).toList();
                         final highPriorityTasksList = allTasks
                             .where((task) => task.isHighPriority)
                             .toList();
@@ -141,7 +140,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Expanded(
                           child: Column(
                             children: [
-                                AchievedTasksProgress(totalTasks: totalTasks , completedTasks: completedTasks,),
+                                AchievedTasksProgress(totalTasks: totalTasks , completedTasks: completedTasks.length,),
                               SizedBox(height: 10,),
                               Expanded(
                                 child: ListView(
