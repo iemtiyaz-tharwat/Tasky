@@ -42,7 +42,7 @@ class _TodoScreenState extends State<ToDoScreen> {
                       final toDoTasks = controller.newTasks
                           .where((task) => !task.isCompleted)
                           .toList();
-                           if (controller.newTasks.isEmpty) {
+                           if (controller.newTasks.isEmpty || toDoTasks.isEmpty) {
                           return Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,

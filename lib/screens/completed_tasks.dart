@@ -39,7 +39,7 @@ class _CompletedTasksState extends State<CompletedTasks> {
                   Consumer<NewTaskController>(
                     builder: (context, controller, child) {
                       final completedTasks = controller.newTasks.where((task) => task.isCompleted).toList();
-                           if (controller.newTasks.isEmpty) {
+                           if (controller.newTasks.isEmpty || completedTasks.isEmpty) {
                           return Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
