@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 
 class NewTaskModel {
   final String? taskName;
-  final String? taskDescription;
+  final String taskDescription;
   bool isCompleted;
-  NewTaskModel({this.taskName, this.taskDescription , this.isCompleted = false});
+  bool isHighPriority;
+  NewTaskModel({this.taskName, this.taskDescription = "" , this.isCompleted = false, this.isHighPriority = false});
 
   // @override          //to show them as strings not instances if i want 
   // String toString() {
@@ -26,8 +27,11 @@ class NewTaskController extends ChangeNotifier {     //أفتكر ايه الف�
     notifyListeners();
   }
 
-  void taskCompletion(int index) {
-    newTasks[index].isCompleted = !newTasks[index].isCompleted;
-    notifyListeners();
-  }
+  void taskCompletion(NewTaskModel task, bool? value) {
+    final index = newTasks.indexOf(task);
+    if (index != -1) {
+      newTasks[index].isCompleted = value ?? false;
+      notifyListeners();
+  
 }
+  }}

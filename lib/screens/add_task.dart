@@ -13,9 +13,10 @@ class AddTaskScreen extends StatefulWidget {
 }
 
 class _AddTaskScreenState extends State<AddTaskScreen> {
-  bool isSwitched = false;
+  bool _isHighPriority = false;
   GlobalKey<FormState> taskNameKey = GlobalKey();
   GlobalKey<FormState> taskDescriptionKey = GlobalKey();
+  GlobalKey<FormState> taskPriorityKey = GlobalKey();
   final _taskNameController = TextEditingController();
   final _descriptionController = TextEditingController();
   @override
@@ -84,11 +85,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   ),
                   SizedBox(width: 190),
                   Switch(
-                    value: isSwitched,
+                    value: _isHighPriority,
                     onChanged: (value) {
                       setState(() {
-                        isSwitched = value;
+                        _isHighPriority = value;
                       });
+                      
                     },
                     activeThumbColor: Color(0xffFFFCFC),
                     inactiveThumbColor: Color(0xff6D6D6D),
@@ -106,13 +108,12 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   padding: EdgeInsets.symmetric(vertical: 12),
                 ),
                 onPressed: () {
-                  if (taskNameKey.currentState!.validate() && taskDescriptionKey.currentState!.validate() ) {
-                    context.read<NewTaskController>().add(NewTaskModel(taskName: _taskNameController.text, taskDescription: _descriptionController.text));
+                  if (taskNameKey.currentState!.validate() ) {
+                    context.read<NewTaskController>().add(NewTaskModel(taskName: _taskNameController.text, taskDescription: _descriptionController.text, isHighPriority: _isHighPriority));
                     Navigator.pop(context);
                   } else {
                     print("Not valid");
                   }
-                  
                 },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
