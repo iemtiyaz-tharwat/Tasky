@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tasky/provider/custom_provider.dart';
+import 'package:tasky/provider/motivation_quote_controller.dart';
 import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/tasky_name.dart';
 import 'package:provider/provider.dart';
@@ -14,6 +15,7 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => UserNameProvider(),
         ),
+        ChangeNotifierProvider(create: (_)=>MotivationQuoteProvider())
       ],
       child: const TaskyApp(),
     ),

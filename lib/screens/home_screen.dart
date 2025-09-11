@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tasky/custom_clasess/achieved_class.dart';
+import 'package:tasky/provider/motivation_quote_controller.dart';
 import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/add_task.dart';
 import 'package:tasky/provider/custom_provider.dart';
@@ -18,6 +19,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final userName = Provider.of<UserNameProvider>(context).userName ?? '';
+    final motivationQuote = Provider.of<MotivationQuoteProvider>(
+      context,
+    ).motivationQuote;
     return Consumer<NewTaskController>(
       builder: (context, NewTaskController newTaskController, child) {
         return Center(
@@ -49,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Center(
                         child: SizedBox(
                         width: 251,
-                        height: 80,
+                        height: 120,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -63,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             Text(
-                              "One task at a time. One step closer.",
+                              "$motivationQuote",
                               style: TextStyle(
                                 fontSize: 16,
                                 fontFamily: 'Poppins',

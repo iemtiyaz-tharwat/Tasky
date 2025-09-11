@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/customWidgets/custom_text_style.dart';
+import 'package:tasky/provider/motivation_quote_controller.dart';
 import 'package:tasky/provider/user_name_controller.dart';
+import 'package:tasky/screens/tasky_name.dart';
+import 'package:tasky/screens/user_details.dart' hide Container;
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -11,9 +15,13 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  bool isDarkMode = false;
   @override
   Widget build(BuildContext context) {
     final userName = Provider.of<UserNameProvider>(context).userName ?? '';
+    final motivationQuote = Provider.of<MotivationQuoteProvider>(
+      context,
+    ).motivationQuote;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -30,15 +38,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     icon: Icon(Icons.arrow_back),
                     color: Colors.white,
                   ),
-                  SizedBox(width: 4),
-                  CustomTextStyle(
-                    text: "My Profile",
-                    fontSize: 23,
-                    fontFamily: "Poppins",
+                  SizedBox(width: 7),
+                  Text(
+                    "My Profile",
+                    style: TextStyle(
+                      fontSize: 22,
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w600,
+                      color: Color(0xffFFFCFC),
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 50),
+              SizedBox(height: 18),
               Center(
                 child: Stack(
                   children: [
@@ -58,27 +70,170 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                         child: Icon(Icons.camera_alt),
                       ),
-                      
                     ),
                   ],
                 ),
-              
               ),
               Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    SizedBox(height: 2),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CustomTextStyle(text: "$userName", fontSize: 20, fontFamily: "Poppins")
+                        Text(
+                          "$userName",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                          ),
+                        ),
                       ],
-                    )
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "$motivationQuote",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.w400,
+                            color: Color(0xffC6C6C6),
+                          ),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              )
+              ),
+              SizedBox(height: 35),
+              Column(
+                children: [
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Profile Info",
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w400,
+                          color: Color(0xffFFFCFC),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 17.5),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        "assets/images/user-03.svg",
+                        width: 28,
+                        height: 28,
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        "User Details",
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Poppins",
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(width: 160),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return UserDetails();
+                              },
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.arrow_forward),
+                        color: Color(0xffC6C6C6),
+                        iconSize: 28,
+                      ),
+                    ],
+                  ),
+                  Divider(indent: 20, endIndent: 20, color: Color(0xff6D6D6D)),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        "assets/images/moon-01.svg",
+                        width: 28,
+                        height: 28,
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        "Dark Mode",
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Poppins",
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(width: 160),
+                      Switch(
+                        value: isDarkMode,
+                        onChanged: (value) {
+                          setState(() {
+                            isDarkMode = value;
+                          });
+                        },
+                        activeThumbColor: Color(0xffFFFCFC),
+                        inactiveThumbColor: Color(0xff6D6D6D),
+                        activeTrackColor: Color(0xff15B86C),
+                        inactiveTrackColor: Color(0xff282828),
+                      ),
+                    ],
+                  ),
+                  Divider(indent: 20, endIndent: 20, color: Color(0xff6D6D6D)),
+                  Row(
+                    children: [
+                      SvgPicture.asset(
+                        "assets/images/Leading element.svg",
+                        width: 28,
+                        height: 28,
+                      ),
+                      SizedBox(width: 20),
+                      Text(
+                        "Log Out",
+                        style: TextStyle(
+                          fontSize: 19,
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "Poppins",
+                          color: Colors.white,
+                        ),
+                      ),
+                      SizedBox(width: 200),
+                      IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) {
+                                return TaskyName();
+                              },
+                            ),
+                          );
+                        },
+                        icon: Icon(Icons.arrow_forward),
+                        color: Color(0xffC6C6C6),
+                        iconSize: 28,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ],
           ),
         ),
