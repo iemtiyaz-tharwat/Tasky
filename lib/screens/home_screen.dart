@@ -1,14 +1,14 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tasky/custom_clasess/achieved_class.dart';
 import 'package:tasky/screens/add_task.dart';
 import 'package:tasky/provider/custom_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/customWidgets/custom_text_style.dart';
+import 'package:tasky/screens/completed_tasks.dart';
 import 'package:tasky/screens/profile_screen.dart';
-
+import 'package:tasky/custom_clasess/achieved_class.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key, required this.userName});
   final String userName;
@@ -19,7 +19,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   _HomeScreenState({required this.userName});
   String userName;
-  bool isChecked = false;
   @override
   Widget build(BuildContext context) {
     return Consumer<NewTaskController>(
@@ -83,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
-                  if (newTaskController.newTasks.isNotEmpty)
+                  if (newTaskController.newTasks.isNotEmpty) 
                     Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: RichText(
@@ -109,11 +108,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
+                      
                     ),
                   SizedBox(height: 10),
                   Expanded(
                     child: Consumer<NewTaskController>(
                       builder: (context, newTaskController, child) {
+                       int totalTasks = newTaskController.newTasks.length;
+                       int completedTasks = newTaskController.newTasks.where((task) => task.isCompleted).length;
                         final allTasks = newTaskController.newTasks;
                         final highPriorityTasksList = allTasks
                             .where((task) => task.isHighPriority)
@@ -136,157 +138,169 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           );
                         }
-                        return ListView(
-                          children: [
-                            if (highPriorityTasksList.isNotEmpty) ...[
-                              Container(
-                                width: double.infinity,
-    padding: const EdgeInsets.all(16),
-                                decoration: BoxDecoration(
-                                  color: const Color(0xFF282828),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Column(
-                                
+                        return Expanded(
+                          child: Column(
+                            children: [
+                                AchievedTasksProgress(totalTasks: totalTasks , completedTasks: completedTasks,),
+                              SizedBox(height: 10,),
+                              Expanded(
+                                child: ListView(
                                   children: [
-                                    Row(children: [const Text(
-                                      "High Priority Tasks",
-                                      style: TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w400,
-                                        fontFamily: "Poppins",
-                                        color: Color(0xff15B86C),
+                                    if (highPriorityTasksList.isNotEmpty) ...[
+                                      Container(
+                                        width: double.infinity,
+                                    padding: const EdgeInsets.all(16),
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xFF282828),
+                                          borderRadius: BorderRadius.circular(20),
+                                        ),
+                                        child: Column(
+                                        
+                                          children: [
+                                            Row(children: [const Text(
+                                              "High Priority Tasks",
+                                              style: TextStyle(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "Poppins",
+                                                color: Color(0xff15B86C),
+                                              ),
+                                            ),
+                                            ],),
+                                            const SizedBox(height: 8),
+                                            ...highPriorityTasksList
+                                                  .map(
+                                                    (task) => ListTile(
+                                                      contentPadding: EdgeInsets.zero,
+                                                      leading: Checkbox(
+                                                        value: task.isCompleted,
+                                                        activeColor: Color(
+                                                          0xff15B86C,
+                                                        ),
+                                                        
+                                                        onChanged: (value) {
+                                                          context
+                                                              .read< NewTaskController >().taskCompletion(task, value,
+                                                              );
+                                                        },
+                                                        
+                                                      ),
+                                                      title: Text(
+                                                        task.taskName.toString(),
+                                                        style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          fontSize: 16,
+                                                          color: task.isCompleted? Color(0xffA0A0A0) : Color(0xffFFFCFC),
+                                                          fontWeight: FontWeight.w600,
+                                                          decoration: task.isCompleted
+                                                              ? TextDecoration
+                                                                    .lineThrough
+                                                              : TextDecoration.none,
+                                                          decorationColor:
+                                                              Colors.grey.shade800,
+                                                          decorationThickness: 3,
+                                                        ),
+                                                      ),
+                                                      subtitle: Text(
+                                                        task.taskDescription
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 13,
+                                                          color: task.isCompleted? Color(0xffA0A0A0) : Color(0xffFFFCFC),
+                                                          fontWeight: FontWeight.w600,
+                                                          decoration: task.isCompleted
+                                                              ? TextDecoration
+                                                                    .lineThrough
+                                                              : TextDecoration.none,
+                                                          decorationColor:
+                                                              Colors.grey.shade800,
+                                                          decorationThickness: 3,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                  ,
+                                            
+                                          ],
+                                        ),
                                       ),
-                                    ),
-                                    ],),
-                                    const SizedBox(height: 8),
-                                    ...highPriorityTasksList
-                                          .map(
-                                            (task) => ListTile(
-                                              contentPadding: EdgeInsets.zero,
+                                      
+                                      const SizedBox(height: 24),
+                                    ],
+                                    if (notHighPriorityTasksList.isNotEmpty) ...[
+                                      const CustomTextStyle(
+                                        text: "My Tasks",
+                                        fontSize: 21,
+                                        fontFamily: "Poppins",
+                                      ),
+                                      const SizedBox(height: 24),
+                                      ListView.separated(
+                                        shrinkWrap: true,
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        itemCount: notHighPriorityTasksList.length,
+                                        separatorBuilder: (context, index) =>
+                                            SizedBox(height: 12),
+                                        itemBuilder: (context, index) {
+                                          final task = notHighPriorityTasksList[index];
+                                          return Container(
+                                            height: 70,
+                                            decoration: BoxDecoration(
+                                              color: const Color(0xff282828),
+                                              borderRadius: BorderRadius.circular(20),
+                                            ),
+                                
+                                            child: ListTile(
                                               leading: Checkbox(
                                                 value: task.isCompleted,
-                                                activeColor: Color(
-                                                  0xff15B86C,
-                                                ),
+                                                activeColor: Color(0xff15B86C),
                                                 onChanged: (value) {
                                                   context
-                                                      .read< NewTaskController >().taskCompletion(task, value,
-                                                      );
+                                                      .read<NewTaskController>()
+                                                      .taskCompletion(task, value);
                                                 },
                                               ),
+                                
                                               title: Text(
                                                 task.taskName.toString(),
                                                 style: TextStyle(
                                                   fontFamily: "Poppins",
-                                                  fontSize: 16,
+                                                  fontSize: 17,
                                                   color: task.isCompleted? Color(0xffA0A0A0) : Color(0xffFFFCFC),
                                                   fontWeight: FontWeight.w600,
                                                   decoration: task.isCompleted
-                                                      ? TextDecoration
-                                                            .lineThrough
+                                                      ? TextDecoration.lineThrough
                                                       : TextDecoration.none,
-                                                  decorationColor:
-                                                      Colors.grey.shade800,
+                                                  decorationColor: Colors.grey.shade800,
                                                   decorationThickness: 3,
+                                                  
                                                 ),
                                               ),
                                               subtitle: Text(
-                                                task.taskDescription
-                                                    .toString(),
+                                                task.taskDescription.toString(),
                                                 style: TextStyle(
                                                   fontFamily: 'Poppins',
                                                   fontSize: 13,
                                                   color: task.isCompleted? Color(0xffA0A0A0) : Color(0xffFFFCFC),
                                                   fontWeight: FontWeight.w600,
                                                   decoration: task.isCompleted
-                                                      ? TextDecoration
-                                                            .lineThrough
+                                                      ? TextDecoration.lineThrough
                                                       : TextDecoration.none,
-                                                  decorationColor:
-                                                      Colors.grey.shade800,
+                                                  decorationColor: Colors.grey.shade800,
                                                   decorationThickness: 3,
                                                 ),
                                               ),
                                             ),
-                                          )
-                                          .toList(),
-                                    
-                                  ],
-                                ),
-                              ),
-                              
-                              const SizedBox(height: 24),
-                            ],
-                            if (notHighPriorityTasksList.isNotEmpty) ...[
-                              const CustomTextStyle(
-                                text: "My Tasks",
-                                fontSize: 20,
-                                fontFamily: "Poppins",
-                              ),
-                              const SizedBox(height: 24),
-                              ListView.separated(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                itemCount: notHighPriorityTasksList.length,
-                                separatorBuilder: (context, index) =>
-                                    SizedBox(height: 12),
-                                itemBuilder: (context, index) {
-                                  final task = notHighPriorityTasksList[index];
-                                  return Container(
-                                    height: 70,
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xff282828),
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-
-                                    child: ListTile(
-                                      leading: Checkbox(
-                                        value: task.isCompleted,
-                                        activeColor: Color(0xff15B86C),
-                                        onChanged: (value) {
-                                          context
-                                              .read<NewTaskController>()
-                                              .taskCompletion(task, value);
+                                          );
                                         },
                                       ),
-
-                                      title: Text(
-                                        task.taskName.toString(),
-                                        style: TextStyle(
-                                          fontFamily: "Poppins",
-                                          fontSize: 17,
-                                          color: task.isCompleted? Color(0xffA0A0A0) : Color(0xffFFFCFC),
-                                          fontWeight: FontWeight.w600,
-                                          decoration: task.isCompleted
-                                              ? TextDecoration.lineThrough
-                                              : TextDecoration.none,
-                                          decorationColor: Colors.grey.shade800,
-                                          decorationThickness: 3,
-                                          
-                                        ),
-                                      ),
-                                      subtitle: Text(
-                                        task.taskDescription.toString(),
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 13,
-                                          color: task.isCompleted? Color(0xffA0A0A0) : Color(0xffFFFCFC),
-                                          fontWeight: FontWeight.w600,
-                                          decoration: task.isCompleted
-                                              ? TextDecoration.lineThrough
-                                              : TextDecoration.none,
-                                          decorationColor: Colors.grey.shade800,
-                                          decorationThickness: 3,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
+                                    ],
+                                  ],
+                                  
+                                ),
                               ),
                             ],
-                          ],
-                          
+                          ),
                         );
                         
                       },
