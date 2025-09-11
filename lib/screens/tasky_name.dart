@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:tasky/customWidgets/custom_button_container.dart';
 import 'package:tasky/customWidgets/custom_text_form_field.dart';
+import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/build_page.dart';
 
 class TaskyName extends StatefulWidget {
@@ -14,6 +16,7 @@ class TaskyName extends StatefulWidget {
 class _TaskyNameState extends State<TaskyName> {
   GlobalKey<FormState> formKey = GlobalKey();
   final userNameController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,11 +115,18 @@ class _TaskyNameState extends State<TaskyName> {
                 GestureDetector(
                   onTap: () {
                     if (formKey.currentState!.validate()) {
+                      final userNameProvider = Provider.of<UserNameProvider>(
+                        context,
+                        listen: false,
+                      );
+
+                      userNameProvider.setUserName(userNameController.text);
+
                       Navigator.push(
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return BuildPage(userName: userNameController.text,);
+                            return BuildPage();
                           },
                         ),
                       );

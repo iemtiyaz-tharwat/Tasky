@@ -2,23 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tasky/custom_clasess/achieved_class.dart';
+import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/add_task.dart';
 import 'package:tasky/provider/custom_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/customWidgets/custom_text_style.dart';
 import 'package:tasky/screens/profile_screen.dart';
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key, required this.userName});
-  final String userName;
+  const HomeScreen({super.key});
   @override
-  State<HomeScreen> createState() => _HomeScreenState(userName: userName);
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  _HomeScreenState({required this.userName});
-  String userName;
   @override
   Widget build(BuildContext context) {
+    final userName = Provider.of<UserNameProvider>(context).userName ?? '';
     return Consumer<NewTaskController>(
       builder: (context, NewTaskController newTaskController, child) {
         return Center(
@@ -47,7 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         icon: Icon(Icons.person, color: Colors.white),
                       ),
-                      SizedBox(
+                      Center(
+                        child: SizedBox(
                         width: 251,
                         height: 80,
                         child: Column(
@@ -72,6 +72,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ],
                         ),
+                      )
+                      
                       ),
                       IconButton(
                         iconSize: 33,

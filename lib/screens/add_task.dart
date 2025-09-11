@@ -23,7 +23,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0x0f181818),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

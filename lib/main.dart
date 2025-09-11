@@ -1,23 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:tasky/provider/custom_provider.dart';
+import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/tasky_name.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (BuildContext context) {
-        //to create the object of the controller  that i will work on.
-        return NewTaskController(); //نفهم كويس ايه الكونترولر دا...
-      },
-      child: TaskyApp(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => NewTaskController(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => UserNameProvider(),
+        ),
+      ],
+      child: const TaskyApp(),
     ),
   );
+  
 }
 
 class TaskyApp extends StatefulWidget {
   const TaskyApp({super.key});
-
   @override
   State<TaskyApp> createState() => _TaskyAppState();
 }
@@ -43,7 +48,12 @@ class _TaskyAppState extends State<TaskyApp> {
           unselectedItemColor: Colors.white,
         ),
         scaffoldBackgroundColor: Color(0xff181818),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xff181818),
+          iconTheme: IconThemeData(color: Color(0xffFFFCFC), size: 30),
+        ),
       ),
+
       home: const TaskyName(),
     );
   }

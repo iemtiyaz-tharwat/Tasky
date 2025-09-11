@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/completed_tasks.dart';
 import 'package:tasky/screens/home_screen.dart';
 import 'package:tasky/screens/profile_screen.dart';
 import 'package:tasky/screens/todo_screen.dart';
 
 class BuildPage extends StatefulWidget {
-  final String userName;
-  const BuildPage({super.key, required this.userName});
+  const BuildPage({super.key});
 
   @override
   State<BuildPage> createState() => _BuildPageState();
@@ -15,18 +16,17 @@ class BuildPage extends StatefulWidget {
 
 class _BuildPageState extends State<BuildPage> {
   _BuildPageState();
-  late String userName;
   int currentIndex = 0;
   @override
   void initState() {
     super.initState();
-    userName = widget.userName;
   }
 
   @override
   Widget build(BuildContext context) {
+
     final List<Widget> screens = <Widget>[
-      HomeScreen(userName: widget.userName),
+      HomeScreen(),
       const ToDoScreen(),
       const CompletedTasks(),
       const ProfileScreen(),
