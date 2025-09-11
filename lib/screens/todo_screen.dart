@@ -26,8 +26,9 @@ class _TodoScreenState extends State<ToDoScreen> {
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Row(
+                     mainAxisAlignment: MainAxisAlignment.center,
+
                       children: [
-                        SizedBox(width: 40,),
                         CustomTextStyle(
                           text: "To Do Tasks",
                           fontSize: 20,
