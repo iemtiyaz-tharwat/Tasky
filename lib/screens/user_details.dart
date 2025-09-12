@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasky/customWidgets/custom_text_form_field.dart';
 import 'package:tasky/customWidgets/custom_text_style.dart';
 import 'package:tasky/provider/motivation_quote_controller.dart';
 import 'package:tasky/provider/user_name_controller.dart';
+
 
 class UserDetails extends StatefulWidget {
   const UserDetails({super.key});
@@ -15,10 +17,32 @@ class UserDetails extends StatefulWidget {
 class _UserDetailsState extends State<UserDetails> {
   GlobalKey<FormState> motivationQuoteKey = GlobalKey();
   final _motivationQuoteController = TextEditingController();
+  String _hintText = "One task at a time. One step closer.";
+
+  @override
+  void initState() {          //دا عشان يبدأ يحمل القيم لما الويدجت تشتغل
+    super.initState();
+    _loadSavedQuote();        //بتنادي ال saved quote عشان تجيب اخر quote محفوظ 
+  }
+
+  Future<void> _loadSavedQuote() async {          // فانكشن عشان نحمل فيها ال quote المحفوظ
+    final prefs = await SharedPreferences.getInstance();         //يجيب الـ singleton الخاص بالـ SharedPreferences للتعامل مع التخزين.
+    final lastQuote = prefs.getString('motivation_quote');       //يحاول يقرأ القيمة المخزنة تحت 'motivation_quote'.
+    if (lastQuote != null && lastQuote.isNotEmpty) {        //لو فيه قيمة فعلا هيحدث الstate بالقيمة الجديدة 
+      setState(() {
+        _hintText = lastQuote;
+      });
+    }
+  }
+
+  Future<void> _saveQuote(String quote) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setString('motivation_quote', quote);
+  }
   @override
   Widget build(BuildContext context) {
     final userName = Provider.of<UserNameProvider>(context).userName ?? '';
-    final motivationProvider = Provider.of<MotivationQuoteProvider>(context);
+    final motivationProvider = Provider.of<MotivationQuoteProvider>(context); 
     return Scaffold(
       body: SingleChildScrollView(
         child: SafeArea(
@@ -30,14 +54,15 @@ class _UserDetailsState extends State<UserDetails> {
                 Row(
                   children: [
                     IconButton(
-                      onPressed: () {
+                      onPressed: () async{
                         final enteredText = _motivationQuoteController.text
                             .trim();
                         final motivationQuote = enteredText.isEmpty
                             ? "One task at a time. One step closer."
                             : enteredText;
-                            Provider.of<MotivationQuoteProvider>(context, listen: false)
-        .setQuote(motivationQuote);
+                            motivationProvider.setQuote(motivationQuote);
+                            await _saveQuote(motivationQuote);
+                            
                         Navigator.pop(context);
                       },
                       icon: Icon(Icons.arrow_back),
@@ -121,7 +146,7 @@ class _UserDetailsState extends State<UserDetails> {
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          hintText: "One task at a time. One step closer.",
+                          hintText: _hintText,
                           hintStyle: TextStyle(
                             fontFamily: 'Poppins',
                             fontSize: 18,
