@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky/customWidgets/custom_text_style.dart';
 import 'package:tasky/provider/motivation_quote_controller.dart';
 import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/tasky_name.dart';
-import 'package:tasky/screens/user_details.dart' hide Container;
+import 'package:tasky/screens/user_details.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

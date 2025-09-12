@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
-import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/completed_tasks.dart';
 import 'package:tasky/screens/home_screen.dart';
 import 'package:tasky/screens/profile_screen.dart';
