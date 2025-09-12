@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tasky/mode_theme/dark_mode.dart';
+import 'package:tasky/mode_theme/light_mode.dart';
 import 'package:tasky/provider/custom_provider.dart';
 import 'package:tasky/provider/motivation_quote_controller.dart';
+import 'package:tasky/provider/theme_provider.dart';
 import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/tasky_name.dart';
 import 'package:provider/provider.dart';
 
 
-void main() {
+void main(){
+  
   runApp(
     MultiProvider(
       providers: [
@@ -16,7 +21,8 @@ void main() {
         ChangeNotifierProvider(
           create: (_) => UserNameProvider(),
         ),
-        ChangeNotifierProvider(create: (_)=>MotivationQuoteProvider())
+        ChangeNotifierProvider(create: (_)=> MotivationQuoteProvider()),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: const TaskyApp(),
     ),
@@ -34,31 +40,34 @@ class _TaskyAppState extends State<TaskyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    return Consumer <ThemeProvider>(builder: (context, themeProvider, child) {
     return MaterialApp(
       title: "Tasky App",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        //splashColor: Colors.green.withOpacity(0.2),       //green tapping effect
-        //highlightColor: Colors.green.withOpacity(0.1),
-        splashFactory:
-            NoSplash.splashFactory, //no effect color in navBar after tapping
-        hintColor:
-            Colors.transparent, //disappear the shade effect after tapping
+      theme: themeProvider.isDark ? darkModeTheme() : lightModeTheme(),
 
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Color(0xff181818),
-          selectedItemColor: Colors.green,
-          unselectedItemColor: Colors.white,
-        ),
-        scaffoldBackgroundColor: Color(0xff181818),
-        appBarTheme: AppBarTheme(
-          backgroundColor: Color(0xff181818),
-          iconTheme: IconThemeData(color: Color(0xffFFFCFC), size: 30),
-        ),
-      ),
+      // ThemeData( 
+      //   //splashColor: Colors.green.withOpacity(0.2),       //green tapping effect
+      //   //highlightColor: Colors.green.withOpacity(0.1),
+      //   splashFactory:
+      //       NoSplash.splashFactory, //no effect color in navBar after tapping
+      //   hintColor:
+      //       Colors.transparent, //disappear the shade effect after tapping
+
+      //   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      //     backgroundColor: Color(0xff181818),
+      //     selectedItemColor: Colors.green,
+      //     unselectedItemColor: Colors.white,
+      //   ),
+      //   scaffoldBackgroundColor: Color(0xff181818),
+      //   appBarTheme: AppBarTheme(
+      //     backgroundColor: Color(0xff181818),
+      //     iconTheme: IconThemeData(color: Color(0xffFFFCFC), size: 30),
+      //   ),
+      // ),
       
-
       home: const TaskyName(),
     );
+    },);
   }
 }

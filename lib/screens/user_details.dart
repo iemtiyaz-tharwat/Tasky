@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tasky/customWidgets/custom_text_form_field.dart';
 import 'package:tasky/customWidgets/custom_text_style.dart';
 import 'package:tasky/provider/motivation_quote_controller.dart';
 import 'package:tasky/provider/user_name_controller.dart';
@@ -26,8 +25,8 @@ class _UserDetailsState extends State<UserDetails> {
   }
 
   Future<void> _loadSavedQuote() async {          // فانكشن عشان نحمل فيها ال quote المحفوظ
-    final prefs = await SharedPreferences.getInstance();         //يجيب الـ singleton الخاص بالـ SharedPreferences للتعامل مع التخزين.
-    final lastQuote = prefs.getString('motivation_quote');       //يحاول يقرأ القيمة المخزنة تحت 'motivation_quote'.
+    final preference = await SharedPreferences.getInstance();          //يجيب الـ singleton الخاص بالـ SharedPreferences للتعامل مع التخزين الي هو عبارة عن ماب.
+    final lastQuote = preference.getString('motivation_quote');       //يحاول يقرأ القيمة المخزنة تحت 'motivation_quote'.
     if (lastQuote != null && lastQuote.isNotEmpty) {        //لو فيه قيمة فعلا هيحدث الstate بالقيمة الجديدة 
       setState(() {
         _hintText = lastQuote;
@@ -36,8 +35,8 @@ class _UserDetailsState extends State<UserDetails> {
   }
 
   Future<void> _saveQuote(String quote) async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('motivation_quote', quote);
+    final preference = await SharedPreferences.getInstance();
+    await preference.setString('motivation_quote', quote);
   }
   @override
   Widget build(BuildContext context) {

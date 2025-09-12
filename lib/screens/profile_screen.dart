@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tasky/main.dart';
+import 'package:tasky/mode_theme/dark_mode.dart';
+import 'package:tasky/mode_theme/light_mode.dart';
 import 'package:tasky/provider/motivation_quote_controller.dart';
+import 'package:tasky/provider/theme_provider.dart';
 import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/tasky_name.dart';
 import 'package:tasky/screens/user_details.dart';
@@ -15,6 +20,25 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool isDarkMode = false;
+
+ @override
+  void initState() {
+    super.initState();
+    loadAppMode(isDarkMode);
+  }
+  void loadAppMode (bool value) async {
+    final preference = await SharedPreferences.getInstance();
+    final appMode = preference.getBool("darkMode");
+    if (appMode != null) {
+      setState(() {
+        isDarkMode = appMode;
+      });
+    }
+  }
+  void appMode (bool value) async {
+    final preference = await SharedPreferences.getInstance();
+    await preference.setBool("darkMode", value);
+    }
   @override
   Widget build(BuildContext context) {
     final userName = Provider.of<UserNameProvider>(context).userName ?? '';
@@ -187,6 +211,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           setState(() {
                             isDarkMode = value;
                           });
+                          appMode(value);
+                          final themeMode = value ? darkModeTheme() : lightModeTheme();
+                          Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
                         },
                         activeThumbColor: Color(0xffFFFCFC),
                         inactiveThumbColor: Color(0xff6D6D6D),

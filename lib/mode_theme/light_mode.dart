@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasky/mode_colors/light_mode_colors.dart';
 
-ThemeData getThemeDataLight() {
+ThemeData lightModeTheme() {
   return ThemeData(
     cardColor: Colors.white,
     primaryColor: Colors.white,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tasky/mode_colors/dark_mode_colors.dart';
 
-ThemeData getThemeDataDark() {
+ThemeData darkModeTheme() {
   return ThemeData(
     cardColor: Color(0xff282828),
     iconTheme: IconThemeData(color: AppColorDark.fontColor),
