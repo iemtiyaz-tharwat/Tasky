@@ -5,6 +5,7 @@ import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/tasky_name.dart';
 import 'package:provider/provider.dart';
 
+
 void main() {
   runApp(
     MultiProvider(
@@ -55,6 +56,7 @@ class _TaskyAppState extends State<TaskyApp> {
           iconTheme: IconThemeData(color: Color(0xffFFFCFC), size: 30),
         ),
       ),
+      
 
       home: const TaskyName(),
     );
