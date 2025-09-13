@@ -13,7 +13,8 @@ ThemeData lightModeTheme() {
       surface: AppColorLight.cursorColor,
       primaryFixed: AppColorLight.listTileTitleColorWhenIsNotCompleted,
       primaryFixedDim: AppColorLight.listTileTitleColorWhenIsCompleted,
-
+      onPrimaryFixed: AppColorLight.archieveTasksColor,
+      onSecondaryFixed: AppColorLight.numberOfAchievedTasksSentence,
     ),
     primaryColor: Colors.white,
     iconTheme: IconThemeData(color: AppColorLight.fontColor),

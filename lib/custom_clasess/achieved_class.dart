@@ -19,7 +19,7 @@ class AchievedTasksProgress extends StatelessWidget {
     return Container(
       height: 72,
       width: double.infinity,
-      decoration: BoxDecoration(color: Color(0xff282828), borderRadius: BorderRadius.circular(20),),
+      decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondaryContainer, borderRadius: BorderRadius.circular(20),border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer )),
       child: Row(
         children: [
           Padding(
@@ -27,10 +27,10 @@ class AchievedTasksProgress extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                 Text(
             'Achieved Tasks',
             style: TextStyle(
-              color: Color(0xffFFFCFC),
+              color: Theme.of(context).colorScheme.onPrimaryFixed,
               fontSize: 20,
               fontWeight: FontWeight.w400,
               fontFamily: "Poppins",
@@ -38,8 +38,8 @@ class AchievedTasksProgress extends StatelessWidget {
                     ), 
                     Text(
             '$completedTasks out of $totalTasks Done',
-            style: const TextStyle(
-              color: Color(0xffC6C6C6),
+            style: TextStyle(
+              color: Theme.of(context).colorScheme.onSecondaryFixed,
               fontSize: 16,
               fontWeight: FontWeight.w400,
               fontFamily: "Poppins",
@@ -52,7 +52,7 @@ class AchievedTasksProgress extends StatelessWidget {
           CircularPercentIndicator(radius: 26, lineWidth: 5.0,
               percent: progress,
                animation: true, animationDuration: 1200, circularStrokeCap: CircularStrokeCap.round,
-              center: Text('$percentage%', style: TextStyle( color: Colors.white,
+              center: Text('$percentage%', style: TextStyle( color: Theme.of(context).colorScheme.onPrimaryFixed,
               fontSize: 14,
               fontWeight: FontWeight.w500,),),
               progressColor: Color(0xff15B86C),),

@@ -12,6 +12,8 @@ ThemeData darkModeTheme() {
       surface: AppColorDark.cursorColor,
       primaryFixed: AppColorDark.listTileTitleColorWhenIsNotCompleted,
       primaryFixedDim: AppColorDark.listTileTitleColorWhenIsCompleted,
+      onPrimaryFixed: AppColorDark.archieveTasksColor,
+      onSecondaryFixed: AppColorDark.numberOfAchievedTasksSentence,
     ),
     iconTheme: IconThemeData(color: AppColorDark.fontColor),
     appBarTheme: AppBarTheme(
