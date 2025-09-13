@@ -7,6 +7,8 @@ import 'package:tasky/mode_theme/light_mode.dart';
 import 'package:tasky/provider/motivation_quote_controller.dart';
 import 'package:tasky/provider/theme_provider.dart';
 import 'package:tasky/provider/user_name_controller.dart';
+import 'package:tasky/screens/build_page.dart';
+import 'package:tasky/screens/home_screen.dart';
 import 'package:tasky/screens/tasky_name.dart';
 import 'package:tasky/screens/user_details.dart';
 
@@ -18,19 +20,21 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool isLightMode = false;
+  bool isDarkMode = false;
 
  @override
   void initState() {
     super.initState();
-    loadAppMode(isLightMode);
+    loadAppMode(isDarkMode
+);
   }
   void loadAppMode (bool value) async {
     final preference = await SharedPreferences.getInstance();
     final appMode = preference.getBool("darkMode");
     if (appMode != null) {
       setState(() {
-        isLightMode = appMode;
+        isDarkMode
+     = appMode;
       });
     }
   }
@@ -49,31 +53,35 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+           // crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(Icons.arrow_back),
-                    color: Theme.of(context).colorScheme.onPrimaryFixed,
-                  ),
-                  SizedBox(width: 7),
+                  // IconButton(
+                  //   onPressed: () {
+                  //     Navigator.pop(context, MaterialPageRoute(builder:(context) {
+                  //       return BuildPage();
+                  //     },));
+                  //   },
+                  //   icon: Icon(Icons.arrow_back),
+                  //   color: Theme.of(context).colorScheme.onPrimaryFixed,
+                  // ),
+                  // SizedBox(width: 7),
                   Text(
                     "My Profile",
                      style: Theme.of(context).textTheme.displayLarge,
                   ),
                 ],
               ),
-              SizedBox(height: 18),
+              SizedBox(height: 34),
               Center(
                 child: Stack(
                   children: [
                     CircleAvatar(
                       backgroundColor: Theme.of(context).colorScheme.tertiaryFixed,
-                      radius: 85,
+                      radius: 60,
                       child: Icon(Icons.person, size: 85, color: Theme.of(context).colorScheme.tertiary),
                     ),
                     Positioned(
@@ -96,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 7),
+                    SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -119,7 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 40),
               Column(
                 children: [
                   Row(
@@ -179,11 +187,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(width: 160),
                       Switch(
-                        value: isLightMode,
+                        value: !context.watch<ThemeProvider>().isDark
+                    ,
                         onChanged: (value) {
                           setState(() {
-                            isLightMode = value;
+                            isDarkMode
+                         = value;
                           });
+
                           appMode(value);
                           final themeMode = value ? darkModeTheme() : lightModeTheme();
                           Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
