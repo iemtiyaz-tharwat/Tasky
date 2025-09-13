@@ -9,12 +9,16 @@ ThemeData darkModeTheme() {
       primary: AppColorDark.ColorFilter,   
       onPrimary: AppColorDark.arrowColor,
       secondaryContainer: AppColorDark.containerColor,
+      onSecondaryContainer: AppColorDark.containerColor,
       surface: AppColorDark.cursorColor,
       primaryFixed: AppColorDark.listTileTitleColorWhenIsNotCompleted,
       primaryFixedDim: AppColorDark.listTileTitleColorWhenIsCompleted,
       onPrimaryFixed: AppColorDark.archieveTasksColor,
       onSecondaryFixed: AppColorDark.numberOfAchievedTasksSentence,
       onSecondary: AppColorDark.subtitleColor,
+      tertiary: AppColorDark.profileDefaultPhotoIcon,
+      tertiaryFixed: AppColorDark.defaultProfilePhotoBackground,
+      tertiaryFixedDim: AppColorDark.cameraIconBackground,
     ),
     iconTheme: IconThemeData(color: AppColorDark.fontColor),
     appBarTheme: AppBarTheme(
@@ -69,7 +73,7 @@ ThemeData darkModeTheme() {
         fontWeight: FontWeight.w400,
         fontSize: 18,
         letterSpacing: 0.5,
-        color: Colors.white,
+        color: Color(0xffC6C6C6),
       ),
     ),
     switchTheme: SwitchThemeData(
@@ -77,7 +81,7 @@ ThemeData darkModeTheme() {
       if (states.contains(WidgetState.selected)) {
         return const Color(0xffFFFCFC); //Active
       }
-      return const Color(0xff6D6D6D);   //off
+      return const Color(0xff9E9E9E);   //off
     }),
     trackColor: WidgetStateProperty.resolveWith<Color>((states) {
       if (states.contains(WidgetState.selected)) {
@@ -87,17 +91,7 @@ ThemeData darkModeTheme() {
     }),
     ),
 
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColorDark.mainColor,
-        foregroundColor: AppColorDark.fontColor,
-        textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
-      ),
-    ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: AppColorDark.mainColor,
-      foregroundColor: AppColorDark.fontColor,
-    ),
+   
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
     backgroundColor: AppColorDark.screenColor,

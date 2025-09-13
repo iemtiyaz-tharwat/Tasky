@@ -16,6 +16,9 @@ ThemeData lightModeTheme() {
       onPrimaryFixed: AppColorLight.archieveTasksColor,
       onSecondaryFixed: AppColorLight.numberOfAchievedTasksSentence,
       onSecondary: AppColorLight.subtitleColor,
+      tertiary: AppColorLight.profileDefaultPhotoIcon,
+      tertiaryFixed: AppColorLight.defaultProfilePhotoBackground,
+      tertiaryFixedDim: AppColorLight.cameraIconBackground,
     ),
     primaryColor: Colors.white,
     iconTheme: IconThemeData(color: AppColorLight.fontColor),
@@ -91,18 +94,6 @@ ThemeData lightModeTheme() {
     }),
     ),
 
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: AppColorLight.mainColor,
-        foregroundColor: AppColorLight.fontColor,
-        textStyle: TextStyle(fontWeight: FontWeight.w500, fontSize: 14),
-        minimumSize: Size.fromHeight(56),
-      ),
-    ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: AppColorLight.mainColor,
-      foregroundColor: Colors.white,
-    ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
     type: BottomNavigationBarType.fixed,
     backgroundColor: AppColorLight.screenColor,

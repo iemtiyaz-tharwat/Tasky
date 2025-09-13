@@ -3,13 +3,13 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tasky/custom_clasess/achieved_class.dart';
 import 'package:tasky/provider/motivation_quote_controller.dart';
+import 'package:tasky/provider/theme_provider.dart';
 import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/add_task.dart';
 import 'package:tasky/provider/custom_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:tasky/customWidgets/custom_text_style.dart';
 import 'package:tasky/screens/profile_screen.dart';
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   @override
@@ -49,40 +49,46 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           );
                         },
-                        icon: Icon(Icons.person, color: Colors.white),
+                        icon: Icon(Icons.person, color: Theme.of(context).colorScheme.primaryFixed),
                       ),
                       Center(
                         child: SizedBox(
-                          width: 251,
-                          height: 120,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Good Morning, $userName",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Colors.white,
-                                  //fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w400,
-                                ),
+                        width: 251,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Good Morning, $userName",
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Theme.of(context).colorScheme.onPrimaryFixed,
+                                //fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w400,
                               ),
-                              Text(
-                                "$motivationQuote",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontFamily: 'Poppins',
-                                  color: Colors.white70,
-                                ),
+                            ),
+                            Text(
+                              "$motivationQuote",
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontFamily: 'Poppins',
+                                color: Theme.of(context).colorScheme.onSecondary,
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
+                      )
+                      
                       ),
                       IconButton(
-                        iconSize: 33,
-                        onPressed: () {},
-                        icon: Icon(Icons.settings, color: Colors.white),
+                        onPressed: () {
+                          context.read<ThemeProvider>().toggleTheme();
+                        },
+                        icon: Icon(
+                          context.watch<ThemeProvider>().isDark
+                              ? Icons
+                                    .light_mode 
+                              : Icons.dark_mode, 
+                        ),
                       ),
                     ],
                   ),
@@ -92,9 +98,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: RichText(
                         //New one, should be re studied!!!
                         text: TextSpan(
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 32,
-                            color: Colors.white,
+                            color: Theme.of(context).colorScheme.onPrimaryFixed,
                           ),
                           children: [
                             const TextSpan(
@@ -112,16 +118,16 @@ class _HomeScreenState extends State<HomeScreen> {
                           ],
                         ),
                       ),
+                      
                     ),
                   SizedBox(height: 10),
                   Expanded(
                     child: Consumer<NewTaskController>(
                       builder: (context, newTaskController, child) {
+                       
                         final allTasks = newTaskController.newTasks;
                         int totalTasks = newTaskController.newTasks.length;
-                        final completedTasks = allTasks
-                            .where((task) => task.isCompleted)
-                            .toList();
+                       final completedTasks = allTasks.where((task) => task.isCompleted).toList();
                         final highPriorityTasksList = allTasks
                             .where((task) => task.isHighPriority)
                             .toList();
@@ -134,11 +140,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Center(
-                                child: CustomTextStyle(
-                                  text: "No tasks yet. Add one!",
-                                  fontSize: 16,
+                                child: Text("No tasks yet. Add one!", style: TextStyle(fontSize: 16,
                                   fontFamily: "Poppins",
-                                ),
+                                  color: Theme.of(context).colorScheme.onPrimaryFixed
+                                  ),)
+                                
                               ),
                             ],
                           );
@@ -146,228 +152,154 @@ class _HomeScreenState extends State<HomeScreen> {
                         return Expanded(
                           child: Column(
                             children: [
-                              AchievedTasksProgress(
-                                totalTasks: totalTasks,
-                                completedTasks: completedTasks.length,
-                              ),
-                              SizedBox(height: 10),
+                                AchievedTasksProgress(totalTasks: totalTasks , completedTasks: completedTasks.length,),
+                              SizedBox(height: 10,),
                               Expanded(
                                 child: ListView(
                                   children: [
                                     if (highPriorityTasksList.isNotEmpty) ...[
                                       Container(
                                         width: double.infinity,
-                                        padding: const EdgeInsets.all(16),
+                                    padding: const EdgeInsets.all(16),
                                         decoration: BoxDecoration(
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.secondaryContainer,
-                                          borderRadius: BorderRadius.circular(
-                                            20,
-                                          ),
-                                          border: Border.all(
-                                            color: Theme.of(
-                                              context,
-                                            ).colorScheme.onSecondaryContainer,
-                                          ),
+                                          color: Theme.of(context).colorScheme.secondaryContainer,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer )
                                         ),
                                         child: Column(
+                                        
                                           children: [
-                                            Row(
-                                              children: [
-                                                const Text(
-                                                  "High Priority Tasks",
-                                                  style: TextStyle(
-                                                    fontSize: 17,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontFamily: "Poppins",
-                                                    color: Color(0xff15B86C),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                            const SizedBox(height: 8),
-                                            ...highPriorityTasksList.map(
-                                              (task) => ListTile(
-                                                contentPadding: EdgeInsets.zero,
-                                                leading: Checkbox(
-                                                  value: task.isCompleted,
-                                                  activeColor: Color(
-                                                    0xff15B86C,
-                                                  ),
-                                                  checkColor: Theme.of(context)
-                                                      .colorScheme
-                                                      .secondaryContainer,
-                                                  onChanged: (value) {
-                                                    context
-                                                        .read<
-                                                          NewTaskController
-                                                        >()
-                                                        .taskCompletion(
-                                                          task,
-                                                          value,
-                                                        );
-                                                  },
-                                                ),
-                                                title: Text(
-                                                  task.taskName.toString(),
-                                                  style: TextStyle(
-                                                    fontFamily: "Poppins",
-                                                    fontSize: 16,
-                                                    color: task.isCompleted
-                                                        ? Theme.of(context)
-                                                              .colorScheme
-                                                              .primaryFixedDim
-                                                        : Theme.of(context)
-                                                              .colorScheme
-                                                              .primaryFixed,
-                                                    fontWeight: FontWeight.w600,
-                                                    decoration: task.isCompleted
-                                                        ? TextDecoration
-                                                              .lineThrough
-                                                        : TextDecoration.none,
-                                                    decorationColor:
-                                                        Theme.of(context)
-                                                            .colorScheme
-                                                            .primaryFixedDim,
-                                                    decorationThickness: 2,
-                                                  ),
-                                                ),
-                                                subtitle: Text(
-                                                  task.taskDescription
-                                                      .toString(),
-                                                  style: TextStyle(
-                                                    fontFamily: 'Poppins',
-                                                    fontSize: 13,
-                                                    color: task.isCompleted
-                                                        ? Theme.of(context)
-                                                              .colorScheme
-                                                              .primaryFixedDim
-                                                        : Theme.of(context)
-                                                              .colorScheme
-                                                              .onSecondaryFixed,
-                                                    fontWeight: FontWeight.w600,
-                                                    decoration: task.isCompleted
-                                                        ? TextDecoration
-                                                              .lineThrough
-                                                        : TextDecoration.none,
-                                                    decorationColor:
-                                                        Theme.of(context)
-                                                            .colorScheme
-                                                            .primaryFixedDim,
-                                                    decorationThickness: 2,
-                                                  ),
-                                                ),
+                                            Row(children: [const Text(
+                                              "High Priority Tasks",
+                                              style: TextStyle(
+                                                fontSize: 17,
+                                                fontWeight: FontWeight.w400,
+                                                fontFamily: "Poppins",
+                                                color: Color(0xff15B86C),
                                               ),
                                             ),
+                                            ],),
+                                            const SizedBox(height: 8),
+                                            ...highPriorityTasksList
+                                                  .map(
+                                                    (task) => ListTile(
+                                                      contentPadding: EdgeInsets.zero,
+                                                      leading: Checkbox(
+                                                        value: task.isCompleted,
+                                                        activeColor: Color(
+                                                          0xff15B86C,
+                                                        ),
+                                                        checkColor: Theme.of(context).colorScheme.secondaryContainer,
+                                                        onChanged: (value) {
+                                                          context
+                                                              .read< NewTaskController >().taskCompletion(task, value,
+                                                              );
+                                                        },
+                                                        
+                                                      ),
+                                                      title: Text(
+                                                        task.taskName.toString(),
+                                                        style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          fontSize: 16,
+                                                          color: task.isCompleted? Theme.of(context).colorScheme.primaryFixedDim : Theme.of(context).colorScheme.primaryFixed,
+                                                          fontWeight: FontWeight.w600,
+                                                          decoration: task.isCompleted
+                                                              ? TextDecoration
+                                                                    .lineThrough
+                                                              : TextDecoration.none,
+                                                          decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
+                                          decorationThickness: 2,
+                                                        ),
+                                                      ),
+                                                      subtitle: Text(
+                                                        task.taskDescription
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                          fontFamily: 'Poppins',
+                                                          fontSize: 13,
+                                                          color: task.isCompleted? Theme.of(context).colorScheme.primaryFixedDim : Theme.of(context).colorScheme.onSecondaryFixed,
+                                                          fontWeight: FontWeight.w600,
+                                                          decoration: task.isCompleted
+                                                              ? TextDecoration
+                                                                    .lineThrough
+                                                              : TextDecoration.none,
+                                                          decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
+                                          decorationThickness: 2,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                  ,
+                                            
                                           ],
                                         ),
                                       ),
-
+                                      
                                       const SizedBox(height: 24),
                                     ],
-                                    if (notHighPriorityTasksList
-                                        .isNotEmpty) ...[
-                                      Text(
-                                        "My Tasks",
-                                        style: TextStyle(
-                                          fontSize: 21,
-                                          fontFamily: "Poppins",
-                                          fontWeight: FontWeight.w400,
-                                          color: Theme.of(
-                                            context,
-                                          ).colorScheme.onPrimaryFixed,
-                                        ),
-                                      ),
-
+                                    if (notHighPriorityTasksList.isNotEmpty) ...[
+                                       Text("My Tasks", style: TextStyle(fontSize: 21,
+                                        fontFamily: "Poppins",
+                                        fontWeight: FontWeight.w400,
+                                        color: Theme.of(context).colorScheme.onPrimaryFixed
+                                        ),),
+                                      
                                       const SizedBox(height: 24),
                                       ListView.separated(
                                         shrinkWrap: true,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        itemCount:
-                                            notHighPriorityTasksList.length,
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        itemCount: notHighPriorityTasksList.length,
                                         separatorBuilder: (context, index) =>
                                             SizedBox(height: 12),
                                         itemBuilder: (context, index) {
-                                          final task =
-                                              notHighPriorityTasksList[index];
+                                          final task = notHighPriorityTasksList[index];
                                           return Container(
-                                            height: 70,
                                             decoration: BoxDecoration(
-                                              color: Theme.of(
-                                                context,
-                                              ).colorScheme.secondaryContainer,
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              border: Border.all(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .onSecondaryContainer,
-                                              ),
-                                            ),
-
+                                          color: Theme.of(context).colorScheme.secondaryContainer,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer )
+                                        ),
+                                
                                             child: ListTile(
                                               leading: Checkbox(
                                                 value: task.isCompleted,
                                                 activeColor: Color(0xff15B86C),
-                                                checkColor: Theme.of(context)
-                                                    .colorScheme
-                                                    .secondaryContainer,
+                                                checkColor: Theme.of(context).colorScheme.secondaryContainer,
                                                 onChanged: (value) {
                                                   context
                                                       .read<NewTaskController>()
-                                                      .taskCompletion(
-                                                        task,
-                                                        value,
-                                                      );
+                                                      .taskCompletion(task, value);
                                                 },
                                               ),
-
+                                
                                               title: Text(
-                                                task.taskName.toString(),
-                                                style: TextStyle(
-                                                  fontFamily: "Poppins",
-                                                  fontSize: 16,
-                                                  color: task.isCompleted
-                                                      ? Theme.of(context)
-                                                            .colorScheme
-                                                            .primaryFixedDim
-                                                      : Theme.of(context)
-                                                            .colorScheme
-                                                            .primaryFixed,
-                                                  fontWeight: FontWeight.w600,
-                                                  decoration: task.isCompleted
-                                                      ? TextDecoration
-                                                            .lineThrough
-                                                      : TextDecoration.none,
-                                                  decorationColor: Theme.of(
-                                                    context,
-                                                  ).colorScheme.primaryFixedDim,
-                                                  decorationThickness: 2,
-                                                ),
-                                              ),
+                                                        task.taskName.toString(),
+                                                        style: TextStyle(
+                                                          fontFamily: "Poppins",
+                                                          fontSize: 16,
+                                                          color: task.isCompleted? Theme.of(context).colorScheme.primaryFixedDim : Theme.of(context).colorScheme.primaryFixed,
+                                                          fontWeight: FontWeight.w600,
+                                                          decoration: task.isCompleted
+                                                              ? TextDecoration
+                                                                    .lineThrough
+                                                              : TextDecoration.none,
+                                                          decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
+                                          decorationThickness: 2,
+                                                        ),
+                                                      ),
                                               subtitle: Text(
                                                 task.taskDescription.toString(),
                                                 style: TextStyle(
                                                   fontFamily: 'Poppins',
                                                   fontSize: 13,
-                                                  color: task.isCompleted
-                                                      ? Theme.of(context)
-                                                            .colorScheme
-                                                            .primaryFixedDim
-                                                      : Theme.of(context)
-                                                            .colorScheme
-                                                            .onSecondaryFixed,
+                                                  color: task.isCompleted? Theme.of(context).colorScheme.primaryFixedDim : Theme.of(context).colorScheme.onSecondaryFixed,
                                                   fontWeight: FontWeight.w600,
                                                   decoration: task.isCompleted
-                                                      ? TextDecoration
-                                                            .lineThrough
+                                                      ? TextDecoration.lineThrough
                                                       : TextDecoration.none,
-                                                  decorationColor: Theme.of(
-                                                    context,
-                                                  ).colorScheme.primaryFixedDim,
-                                                  decorationThickness: 2,
+                                                  decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
+                                          decorationThickness: 2,
                                                 ),
                                               ),
                                             ),
@@ -376,15 +308,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                       ),
                                     ],
                                   ],
+                                  
                                 ),
                               ),
                             ],
                           ),
                         );
+                        
                       },
+                      
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 20,),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: FloatingActionButton.extended(

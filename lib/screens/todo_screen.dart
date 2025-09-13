@@ -61,7 +61,6 @@ class _TodoScreenState extends State<ToDoScreen> {
                                 itemBuilder: (context, index) {
                                   final task = toDoTasks[index];
                                   return Container(
-                                    height: 70,
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).colorScheme.secondaryContainer,
                                       borderRadius: BorderRadius.circular(20),

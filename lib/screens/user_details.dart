@@ -135,6 +135,42 @@ class _UserDetailsState extends State<UserDetails> {
                     ),
                   ],
                 ),
+                SizedBox(height: 120),
+                ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff15B86C),
+                  foregroundColor: Colors.white,
+                  padding: EdgeInsets.symmetric(vertical: 12),
+                ),
+                onPressed: () async{
+                        final enteredText = _motivationQuoteController.text
+                            .trim();
+                        final motivationQuote = enteredText.isEmpty
+                            ? "One task at a time. One step closer."
+                            : enteredText;
+                            motivationProvider.setQuote(motivationQuote);
+                            await _saveQuote(motivationQuote);
+                            
+                        Navigator.pop(context);
+                      },
+                
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                  
+                    Text(
+                      'Save',
+                      style: TextStyle(
+                        fontSize: 19,
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            
               ],
             ),
           ),
@@ -142,4 +178,5 @@ class _UserDetailsState extends State<UserDetails> {
       ),
     );
   }
+  
 }

@@ -18,19 +18,19 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool isLightMode = true;
+  bool isDarkMode = true;
 
  @override
   void initState() {
     super.initState();
-    loadAppMode(isLightMode);
+    loadAppMode(isDarkMode);
   }
   void loadAppMode (bool value) async {
     final preference = await SharedPreferences.getInstance();
     final appMode = preference.getBool("darkMode");
     if (appMode != null) {
       setState(() {
-        isLightMode = appMode;
+        isDarkMode = appMode;
       });
     }
   }
@@ -58,7 +58,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Navigator.pop(context);
                     },
                     icon: Icon(Icons.arrow_back),
-                    color: Theme.of(context).colorScheme.primary,
+                    color: Theme.of(context).colorScheme.onPrimaryFixed,
                   ),
                   SizedBox(width: 7),
                   Text(
@@ -72,9 +72,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Stack(
                   children: [
                     CircleAvatar(
-                      backgroundColor: Color(0xffe6e6e6),
+                      backgroundColor: Theme.of(context).colorScheme.tertiaryFixed,
                       radius: 85,
-                      child: Icon(Icons.person, size: 85, color: Colors.white),
+                      child: Icon(Icons.person, size: 85, color: Theme.of(context).colorScheme.tertiary),
                     ),
                     Positioned(
                       right: 0,
@@ -82,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Color(0xffF0F0F0),
+                          color: Theme.of(context).colorScheme.tertiaryFixedDim,
                           shape: BoxShape.circle,
                           
                         ),
@@ -92,12 +92,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 5,),
               Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 2),
+                    SizedBox(height: 7),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -107,6 +106,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ),
                       ],
                     ),
+                    SizedBox(height: 2),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -119,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 35),
+              SizedBox(height: 30),
               Column(
                 children: [
                   Row(
@@ -179,19 +179,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(width: 160),
                       Switch(
-                        value: isLightMode,
+                        value: isDarkMode,
                         onChanged: (value) {
                           setState(() {
-                            isLightMode = value;
+                            isDarkMode = value;
                           });
                           appMode(value);
                           final themeMode = value ? darkModeTheme() : lightModeTheme();
                           Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
                         },
-                        activeThumbColor: Color(0xffFFFCFC),
-                        inactiveThumbColor: Color(0xff6D6D6D),
-                        activeTrackColor: Color(0xff15B86C),
-                        inactiveTrackColor: Color(0xff282828),
+                        
                       ),
                     ],
                   ),

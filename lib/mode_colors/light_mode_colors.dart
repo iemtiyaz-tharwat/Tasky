@@ -15,4 +15,7 @@ class AppColorLight {
   static const archieveTasksColor = Color(0xff161F1B);
   static const numberOfAchievedTasksSentence = Color(0xff3A4640);
   static const subtitleColor = Color(0xff3A4640);
+  static const profileDefaultPhotoIcon = Colors.white;
+  static const defaultProfilePhotoBackground = Color(0xffe6e6e6);
+  static const cameraIconBackground = Color(0xffF5F5F5);
 }

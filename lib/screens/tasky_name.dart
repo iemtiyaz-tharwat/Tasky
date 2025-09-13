@@ -41,7 +41,7 @@ class _TaskyNameState extends State<TaskyName> {
                         fontFamily: 'Plus Jakarta Sans',
                         fontWeight: FontWeight.w400,
                         fontSize: 28,
-                        color: Color(0xff161F1B),
+                        color: Theme.of(context).colorScheme.onPrimaryFixed,
                       ),
                     ),
                   ],
