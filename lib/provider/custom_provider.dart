@@ -20,7 +20,6 @@ class NewTaskModel {
 }
 
 class NewTaskController extends ChangeNotifier {
-
   List<NewTaskModel> newTasks = [];
 
   void add(NewTaskModel addNewTask) {
