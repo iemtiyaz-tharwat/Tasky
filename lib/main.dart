@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tasky/mode_theme/dark_mode.dart';
 import 'package:tasky/mode_theme/light_mode.dart';
 import 'package:tasky/provider/custom_provider.dart';
