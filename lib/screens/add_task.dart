@@ -28,25 +28,18 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           onPressed: () {
             Navigator.pop(context);
           },
-          color: Color(0xffFFFCFC),
+          color: Theme.of(context).colorScheme.primary,
         ),
-        title: CustomTextStyle(
-          text: 'New Task',
-          fontSize: 20,
-          fontFamily: 'Poppins',
-        ),
+        title: Text("New Task", style: Theme.of(context).textTheme.displayLarge,),
       ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 26),
-              CustomTextStyle(
-                text: 'Task Name',
-                fontSize: 20,
-                fontFamily: 'Poppins',
-              ),
+              Text("Task Name", style: Theme.of(context).textTheme.displayMedium,),
               SizedBox(height: 15),
               Form(
                 key: taskNameKey,
@@ -58,11 +51,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              CustomTextStyle(
-                text: 'Task Description',
-                fontSize: 20,
-                fontFamily: 'Poppins',
-              ),
+              Text("Task Description", style: Theme.of(context).textTheme.displayMedium,),
               SizedBox(height: 15),
               Form(
                 key: taskDescriptionKey,
@@ -76,12 +65,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               SizedBox(height: 20),
               Row(
-                children: [
-                  CustomTextStyle(
-                    text: 'High Priority',
-                    fontSize: 20,
-                    fontFamily: 'Poppins',
-                  ),
+                children: [ Text("High Priority", style: Theme.of(context).textTheme.displayMedium,),
                   SizedBox(width: 190),
                   Switch(
                     value: _isHighPriority,
@@ -91,10 +75,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       });
                       
                     },
-                    activeThumbColor: Color(0xffFFFCFC),
-                    inactiveThumbColor: Color(0xff6D6D6D),
-                    activeTrackColor: Color(0xff15B86C),
-                    inactiveTrackColor: Color(0xff282828),
                   ),
                 ],
               ),

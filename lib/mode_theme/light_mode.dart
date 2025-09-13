@@ -11,7 +11,7 @@ ThemeData lightModeTheme() {
       secondaryContainer: AppColorLight.containerColor,
       onSecondaryContainer: AppColorLight.containerBorder,
       surface: AppColorLight.cursorColor,
-      
+
     ),
     primaryColor: Colors.white,
     iconTheme: IconThemeData(color: AppColorLight.fontColor),
@@ -65,6 +65,20 @@ ThemeData lightModeTheme() {
         letterSpacing: 0.5,
         color: Color(0xff3A4640),
       ),
+    ),
+    switchTheme: SwitchThemeData(
+      thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
+      if (states.contains(WidgetState.selected)) {
+        return const Color(0xffFFFCFC); //Active thumb (الدايرة)
+      }
+      return const Color(0xff9E9E9E);   //off لون الدايرة
+    }),
+    trackColor: WidgetStateProperty.resolveWith<Color>((states) {
+      if (states.contains(WidgetState.selected)) {
+        return const Color(0xff15B86C); // التراك وهو ON
+      }
+      return const Color(0xffFFFCFC);   // التراك وهو OFF
+    }),
     ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(

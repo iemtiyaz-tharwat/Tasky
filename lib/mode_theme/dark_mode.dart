@@ -63,7 +63,18 @@ ThemeData darkModeTheme() {
       ),
     ),
     switchTheme: SwitchThemeData(
-      thumbColor: WidgetStateProperty.all(AppColorDark.fontColor),
+      thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
+      if (states.contains(WidgetState.selected)) {
+        return const Color(0xffFFFCFC); //Active
+      }
+      return const Color(0xff6D6D6D);   //off
+    }),
+    trackColor: WidgetStateProperty.resolveWith<Color>((states) {
+      if (states.contains(WidgetState.selected)) {
+        return const Color(0xff15B86C); // التراك وهو ON
+      }
+      return const Color(0xff282828);   // التراك وهو OFF
+    }),
     ),
 
     elevatedButtonTheme: ElevatedButtonThemeData(
