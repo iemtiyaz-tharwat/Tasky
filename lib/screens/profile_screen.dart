@@ -72,7 +72,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Stack(
                   children: [
                     CircleAvatar(
-                      backgroundColor: Theme.of(context).cardColor,
+                      backgroundColor: Color(0xffe6e6e6),
                       radius: 85,
                       child: Icon(Icons.person, size: 85, color: Colors.white),
                     ),
@@ -82,7 +82,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Theme.of(context).cardColor,
+                          color: Color(0xffF0F0F0),
                           shape: BoxShape.circle,
                           
                         ),

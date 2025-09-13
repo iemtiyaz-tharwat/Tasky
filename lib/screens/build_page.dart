@@ -45,11 +45,6 @@ class _BuildPageState extends State<BuildPage> {
               currentIndex = index;
             });
           },
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Color(0xff15B86C),
-          unselectedItemColor: Colors.white,
-          selectedIconTheme: IconThemeData(size: 32),
-          unselectedIconTheme: IconThemeData(size: 25),
           enableFeedback: false, //to enable the tap sound stopping action
 
           items: [

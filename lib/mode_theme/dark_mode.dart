@@ -14,6 +14,7 @@ ThemeData darkModeTheme() {
       primaryFixedDim: AppColorDark.listTileTitleColorWhenIsCompleted,
       onPrimaryFixed: AppColorDark.archieveTasksColor,
       onSecondaryFixed: AppColorDark.numberOfAchievedTasksSentence,
+      onSecondary: AppColorDark.subtitleColor,
     ),
     iconTheme: IconThemeData(color: AppColorDark.fontColor),
     appBarTheme: AppBarTheme(
@@ -98,9 +99,14 @@ ThemeData darkModeTheme() {
       foregroundColor: AppColorDark.fontColor,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: AppColorDark.screenColor,
-      selectedItemColor: AppColorDark.mainColor,
-      unselectedItemColor: Color(0xffC6C6C6),
-    ),
+    type: BottomNavigationBarType.fixed,
+    backgroundColor: AppColorDark.screenColor,
+    selectedItemColor: const Color(0xff15B86C),
+    unselectedItemColor: Color(0xffC6C6C6),
+    selectedIconTheme: const IconThemeData(size: 32),
+    unselectedIconTheme: const IconThemeData(size: 25),
+    showUnselectedLabels: true,
+    enableFeedback: false,
+  ),
   );
 }

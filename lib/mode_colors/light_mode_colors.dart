@@ -14,4 +14,5 @@ class AppColorLight {
   static const listTileSubtitleColorWhenIsNotCompleted = Color(0xff3A4640);
   static const archieveTasksColor = Color(0xff161F1B);
   static const numberOfAchievedTasksSentence = Color(0xff3A4640);
+  static const subtitleColor = Color(0xff3A4640);
 }

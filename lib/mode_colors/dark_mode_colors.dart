@@ -12,4 +12,5 @@ class AppColorDark {
   static const listTileTitleColorWhenIsCompleted = Color(0xffA0A0A0);
   static const archieveTasksColor = Color(0xffFFFCFC);
   static const numberOfAchievedTasksSentence = Color(0xffC6C6C6);
+  static const subtitleColor = Color(0xffC6C6C6);
 }

@@ -15,6 +15,7 @@ ThemeData lightModeTheme() {
       primaryFixedDim: AppColorLight.listTileTitleColorWhenIsCompleted,
       onPrimaryFixed: AppColorLight.archieveTasksColor,
       onSecondaryFixed: AppColorLight.numberOfAchievedTasksSentence,
+      onSecondary: AppColorLight.subtitleColor,
     ),
     primaryColor: Colors.white,
     iconTheme: IconThemeData(color: AppColorLight.fontColor),
@@ -103,9 +104,14 @@ ThemeData lightModeTheme() {
       foregroundColor: Colors.white,
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: AppColorLight.screenColor,
-      selectedItemColor: AppColorLight.mainColor,
-      unselectedItemColor: Color(0xffC6C6C6),
-    ),
+    type: BottomNavigationBarType.fixed,
+    backgroundColor: AppColorLight.screenColor,
+    selectedItemColor: const Color(0xff15B86C),
+    unselectedItemColor: Color(0xff3A4640),
+    selectedIconTheme: const IconThemeData(size: 32),
+    unselectedIconTheme: const IconThemeData(size: 25),
+    showUnselectedLabels: true,
+    enableFeedback: false,
+  ),
   );
 }
