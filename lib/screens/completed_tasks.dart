@@ -59,7 +59,7 @@ class _CompletedTasksState extends State<CompletedTasks> {
                                 itemBuilder: (context, index) {
                                   final task = completedTasks[index];
                                   return Container(
-                                    height: 70,
+                                    height: 75,
                                     decoration: BoxDecoration(
                                       color: Theme.of(context).colorScheme.secondaryContainer,
                                       borderRadius: BorderRadius.circular(20),
@@ -95,6 +95,27 @@ class _CompletedTasksState extends State<CompletedTasks> {
                                           decorationThickness: 2,
                                         ),
                                       ),
+                                      SizedBox(width: 224,),
+                                                    PopupMenuButton<String>(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .primaryFixedDim,
+                                                      onSelected: (value) {
+                                                        if (value == 'delete') {
+                                                          controller
+                                                              .deleteTask(task);
+                                                        }
+                                                      },
+                                                      itemBuilder: (context) =>
+                                                          [
+                                                            const PopupMenuItem(
+                                                              value: 'delete',
+                                                              child: Text(
+                                                                "Delete",
+                                                              ),
+                                                            ),
+                                                          ],
+                                                    ),
                                       ],
                                     )
                                   );

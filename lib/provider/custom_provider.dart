@@ -22,10 +22,6 @@ class NewTaskController extends ChangeNotifier {     //أفتكر ايه الف�
     newTasks.add(addNewTask);
     notifyListeners();
   }
-  void removeAll(){
-    newTasks.clear();
-    notifyListeners();
-  }
 
   void taskCompletion(NewTaskModel task, bool? value) {
     final index = newTasks.indexOf(task);
@@ -34,4 +30,9 @@ class NewTaskController extends ChangeNotifier {     //أفتكر ايه الف�
       notifyListeners();
   
 }
-  }}
+  }
+  void deleteTask(NewTaskModel task) {
+  newTasks.remove(task);
+  notifyListeners();
+}
+  }

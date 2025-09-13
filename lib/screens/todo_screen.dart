@@ -109,6 +109,27 @@ class _TodoScreenState extends State<ToDoScreen> {
                                           decorationThickness: 3,
                                         ),
                                       ),
+                                      trailing:
+                                                    PopupMenuButton<String>(
+                                                      color: Theme.of(context)
+                                                          .colorScheme
+                                                          .primaryFixedDim,
+                                                      onSelected: (value) {
+                                                        if (value == 'delete') {
+                                                          controller
+                                                              .deleteTask(task);
+                                                        }
+                                                      },
+                                                      itemBuilder: (context) =>
+                                                          [
+                                                            const PopupMenuItem(
+                                                              value: 'delete',
+                                                              child: Text(
+                                                                "Delete",
+                                                              ),
+                                                            ),
+                                                          ],
+                                                    ),
                                     ),
                                   );
                                 },
