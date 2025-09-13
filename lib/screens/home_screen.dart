@@ -490,7 +490,6 @@ class _HomeScreenState extends State<HomeScreen> {
           fontWeight: FontWeight.w400,
         ),
       );
-      
     } else {
       return Text(
         "Good Evening, $userName",
@@ -501,7 +500,6 @@ class _HomeScreenState extends State<HomeScreen> {
           fontWeight: FontWeight.w400,
         ),
       );
-      
     }
   }
 }

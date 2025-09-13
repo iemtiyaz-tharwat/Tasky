@@ -19,7 +19,13 @@ class AchievedTasksProgress extends StatelessWidget {
     return Container(
       height: 72,
       width: double.infinity,
-      decoration: BoxDecoration(color: Theme.of(context).colorScheme.secondaryContainer, borderRadius: BorderRadius.circular(20),border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer )),
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondaryContainer,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: Theme.of(context).colorScheme.onSecondaryContainer,
+        ),
+      ),
       child: Expanded(
         child: Row(
           children: [
@@ -28,58 +34,66 @@ class AchievedTasksProgress extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   Text(
-              'Achieved Tasks',
-              style: TextStyle(
-                color: Theme.of(context).colorScheme.onPrimaryFixed,
-                fontSize: 20,
-                fontWeight: FontWeight.w400,
-                fontFamily: "Poppins",
-              ),
-                      ),
-                      subtitle(context),
-          
+                  Text(
+                    'Achieved Tasks',
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onPrimaryFixed,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "Poppins",
+                    ),
+                  ),
+                  subtitle(context),
                 ],
               ),
-              
             ),
-            
-            Spacer(key: key, ),
-            CircularPercentIndicator(radius: 26, lineWidth: 5.0,
-                percent: progress,
-                 animation: true, animationDuration: 1200, circularStrokeCap: CircularStrokeCap.round,
-                center: Text('$percentage%', style: TextStyle( color: Theme.of(context).colorScheme.onPrimaryFixed,
-                fontSize: 14,
-                fontWeight: FontWeight.w500,),),
-                progressColor: Color(0xff15B86C),),
-                SizedBox(width:12,),
+
+            Spacer(key: key),
+            CircularPercentIndicator(
+              radius: 26,
+              lineWidth: 5.0,
+              percent: progress,
+              animation: true,
+              animationDuration: 1200,
+              circularStrokeCap: CircularStrokeCap.round,
+              center: Text(
+                '$percentage%',
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.onPrimaryFixed,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              progressColor: Color(0xff15B86C),
+            ),
+            SizedBox(width: 12),
           ],
         ),
-      )
+      ),
     );
   }
-  Widget subtitle (BuildContext context){
+
+  Widget subtitle(BuildContext context) {
     if (completedTasks == totalTasks) {
       return Text(
-            'GREAT JOB! All tasks are done 🎉',
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSecondaryFixed,
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              fontFamily: "Poppins",
-            ),
-                    );
-    }
-    else {
+        'GREAT JOB! All tasks are done 🎉',
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onSecondaryFixed,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          fontFamily: "Poppins",
+        ),
+      );
+    } else {
       return Text(
-            '$completedTasks out of $totalTasks Done',
-            style: TextStyle(
-              color: Theme.of(context).colorScheme.onSecondaryFixed,
-              fontSize: 16,
-              fontWeight: FontWeight.w400,
-              fontFamily: "Poppins",
-            ),
-                    );
+        '$completedTasks out of $totalTasks Done',
+        style: TextStyle(
+          color: Theme.of(context).colorScheme.onSecondaryFixed,
+          fontSize: 16,
+          fontWeight: FontWeight.w400,
+          fontFamily: "Poppins",
+        ),
+      );
     }
   }
 }

@@ -6,7 +6,7 @@ class Customtextformfield extends StatelessWidget {
     required this.hintText,
     //required this.height,
     required this.maxLines,
-    required this.controller
+    required this.controller,
   });
   final String hintText;
   //final double height;
@@ -30,11 +30,15 @@ class Customtextformfield extends StatelessWidget {
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide(color: Theme.of(context).colorScheme.onSecondaryContainer),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
+            ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
-            borderSide: BorderSide(color: Theme.of(context).colorScheme.onSecondaryContainer),
+            borderSide: BorderSide(
+              color: Theme.of(context).colorScheme.onSecondaryContainer,
+            ),
           ),
           hintText: hintText,
           hintStyle: TextStyle(

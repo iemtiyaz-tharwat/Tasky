@@ -22,7 +22,6 @@ class _BuildPageState extends State<BuildPage> {
 
   @override
   Widget build(BuildContext context) {
-
     final List<Widget> screens = <Widget>[
       HomeScreen(),
       const ToDoScreen(),
@@ -38,7 +37,7 @@ class _BuildPageState extends State<BuildPage> {
           currentIndex: currentIndex, //الي انا واقف عنده
           onTap: (index) {
             //لما أضعط عالإندكس ف قيمة الإنديكس دي هتبقى المفروض هي قيمة الcurrentIndex الجديدة
-            SystemSound; //to stop the tap sound
+            SystemSound: false; //to stop the tap sound
             //  currentIndex = index; //الي انا عايزة أروحله لما أضغط على حاجة مختلفة، مش هيأبديت فوق عشان دا خارج السكوب بتاعه
             //ف احنا عشان نخليه يطلع فوق و يغيره للقيمة الجديدة عايزين حاجة تعمل ريبيلد للاسكرين ف دا هيكون عن طريق ال سِت استيت
             setState(() {

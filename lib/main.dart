@@ -8,25 +8,18 @@ import 'package:tasky/provider/user_name_controller.dart';
 import 'package:tasky/screens/tasky_name.dart';
 import 'package:provider/provider.dart';
 
-
-void main(){
-  
+void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => NewTaskController(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => UserNameProvider(),
-        ),
-        ChangeNotifierProvider(create: (_)=> MotivationQuoteProvider()),
+        ChangeNotifierProvider(create: (_) => NewTaskController()),
+        ChangeNotifierProvider(create: (_) => UserNameProvider()),
+        ChangeNotifierProvider(create: (_) => MotivationQuoteProvider()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: const TaskyApp(),
     ),
   );
-  
 }
 
 class TaskyApp extends StatefulWidget {
@@ -39,16 +32,17 @@ class _TaskyAppState extends State<TaskyApp> {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Consumer <ThemeProvider>(builder: (context, themeProvider, child) {
-    return MaterialApp(
-      title: "Tasky App",
-      debugShowCheckedModeBanner: false,
-      theme: lightModeTheme(),        
-      darkTheme: darkModeTheme(), 
-      themeMode: themeProvider.isDark ? ThemeMode.light : ThemeMode.dark,
-      home: const TaskyName(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          title: "Tasky App",
+          debugShowCheckedModeBanner: false,
+          theme: lightModeTheme(),
+          darkTheme: darkModeTheme(),
+          themeMode: themeProvider.isDark ? ThemeMode.light : ThemeMode.dark,
+          home: const TaskyName(),
+        );
+      },
     );
-    },);
   }
 }
-

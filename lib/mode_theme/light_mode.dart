@@ -40,39 +40,44 @@ ThemeData lightModeTheme() {
         letterSpacing: 0.5,
         color: AppColorLight.fontColor,
       ),
-      displayMedium: TextStyle(          //for sided titles
+      displayMedium: TextStyle(
+        //for sided titles
         fontWeight: FontWeight.w400,
         fontSize: 19,
         color: AppColorLight.fontColor,
-        fontFamily: "Poppins"
+        fontFamily: "Poppins",
       ),
       displaySmall: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 18,
         color: Color(0xffC6C6C6),
       ),
-      labelLarge: TextStyle(      //text form field filling
+      labelLarge: TextStyle(
+        //text form field filling
         fontWeight: FontWeight.w400,
         fontSize: 20,
         color: Color(0xff3A4640),
       ),
-      labelMedium: TextStyle(        //for "No Tasks yet" sentence
+      labelMedium: TextStyle(
+        //for "No Tasks yet" sentence
         fontWeight: FontWeight.w400,
         fontSize: 16,
         color: Color(0xff9E9E9E),
       ),
-      titleLarge: TextStyle(             
+      titleLarge: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 20,
         color: Color(0xff9E9E9E),
       ),
-      titleMedium: TextStyle(             //for hint text
+      titleMedium: TextStyle(
+        //for hint text
         fontWeight: FontWeight.w400,
         fontSize: 18,
         letterSpacing: 0.5,
         color: Color.fromARGB(255, 109, 109, 109),
       ),
-      titleSmall: TextStyle(             //for motivation quote in profile screen
+      titleSmall: TextStyle(
+        //for motivation quote in profile screen
         fontWeight: FontWeight.w400,
         fontSize: 18,
         letterSpacing: 0.5,
@@ -81,28 +86,28 @@ ThemeData lightModeTheme() {
     ),
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.resolveWith<Color>((states) {
-      if (states.contains(WidgetState.selected)) {
-        return const Color(0xffFFFCFC); //Active thumb (الدايرة)
-      }
-      return const Color(0xff9E9E9E);   //off لون الدايرة
-    }),
-    trackColor: WidgetStateProperty.resolveWith<Color>((states) {
-      if (states.contains(WidgetState.selected)) {
-        return const Color(0xff15B86C); // التراك وهو ON
-      }
-      return const Color(0xffFFFCFC);   // التراك وهو OFF
-    }),
+        if (states.contains(WidgetState.selected)) {
+          return const Color(0xffFFFCFC); //Active thumb (الدايرة)
+        }
+        return const Color(0xff9E9E9E); //off لون الدايرة
+      }),
+      trackColor: WidgetStateProperty.resolveWith<Color>((states) {
+        if (states.contains(WidgetState.selected)) {
+          return const Color(0xff15B86C); // التراك وهو ON
+        }
+        return const Color(0xffFFFCFC); // التراك وهو OFF
+      }),
     ),
 
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    type: BottomNavigationBarType.fixed,
-    backgroundColor: AppColorLight.screenColor,
-    selectedItemColor: const Color(0xff15B86C),
-    unselectedItemColor: Color(0xff3A4640),
-    selectedIconTheme: const IconThemeData(size: 32),
-    unselectedIconTheme: const IconThemeData(size: 25),
-    showUnselectedLabels: true,
-    enableFeedback: false,
-  ),
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: AppColorLight.screenColor,
+      selectedItemColor: const Color(0xff15B86C),
+      unselectedItemColor: Color(0xff3A4640),
+      selectedIconTheme: const IconThemeData(size: 32),
+      unselectedIconTheme: const IconThemeData(size: 25),
+      showUnselectedLabels: true,
+      enableFeedback: false,
+    ),
   );
 }

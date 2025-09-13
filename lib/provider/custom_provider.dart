@@ -5,16 +5,21 @@ class NewTaskModel {
   final String taskDescription;
   bool isCompleted;
   bool isHighPriority;
-  NewTaskModel({this.taskName, this.taskDescription = "" , this.isCompleted = false, this.isHighPriority = false});
+  NewTaskModel({
+    this.taskName,
+    this.taskDescription = "",
+    this.isCompleted = false,
+    this.isHighPriority = false,
+  });
 
-  // @override          //to show them as strings not instances if i want 
+  // @override          //to show them as strings not instances if i want
   // String toString() {
   //   // TODO: implement toString
   //   return 'NewTaskModel(taskName: $taskName, taskDescription: $taskDescription)';
   // }
 }
 
-class NewTaskController extends ChangeNotifier {     //أفتكر ايه الفرق بين with و extends 
+class NewTaskController extends ChangeNotifier {
 
   List<NewTaskModel> newTasks = [];
 
@@ -28,11 +33,11 @@ class NewTaskController extends ChangeNotifier {     //أفتكر ايه الف�
     if (index != -1) {
       newTasks[index].isCompleted = value ?? false;
       notifyListeners();
-  
-}
+    }
   }
+
   void deleteTask(NewTaskModel task) {
-  newTasks.remove(task);
-  notifyListeners();
-}
+    newTasks.remove(task);
+    notifyListeners();
   }
+}

@@ -28,7 +28,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
           },
           color: Theme.of(context).colorScheme.primary,
         ),
-        title: Text("New Task", style: Theme.of(context).textTheme.displayLarge,),
+        title: Text(
+          "New Task",
+          style: Theme.of(context).textTheme.displayLarge,
+        ),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -37,7 +40,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: 26),
-              Text("Task Name", style: Theme.of(context).textTheme.displayMedium,),
+              Text(
+                "Task Name",
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
               SizedBox(height: 15),
               Form(
                 key: taskNameKey,
@@ -49,7 +55,10 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                 ),
               ),
               SizedBox(height: 20),
-              Text("Task Description", style: Theme.of(context).textTheme.displayMedium,),
+              Text(
+                "Task Description",
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
               SizedBox(height: 15),
               Form(
                 key: taskDescriptionKey,
@@ -63,7 +72,11 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               ),
               SizedBox(height: 20),
               Row(
-                children: [ Text("High Priority", style: Theme.of(context).textTheme.displayMedium,),
+                children: [
+                  Text(
+                    "High Priority",
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
                   SizedBox(width: 220),
                   Switch(
                     value: _isHighPriority,
@@ -71,7 +84,6 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                       setState(() {
                         _isHighPriority = value;
                       });
-                      
                     },
                   ),
                 ],
@@ -85,8 +97,14 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   padding: EdgeInsets.symmetric(vertical: 12),
                 ),
                 onPressed: () {
-                  if (taskNameKey.currentState!.validate() ) {
-                    context.read<NewTaskController>().add(NewTaskModel(taskName: _taskNameController.text, taskDescription: _descriptionController.text, isHighPriority: _isHighPriority));
+                  if (taskNameKey.currentState!.validate()) {
+                    context.read<NewTaskController>().add(
+                      NewTaskModel(
+                        taskName: _taskNameController.text,
+                        taskDescription: _descriptionController.text,
+                        isHighPriority: _isHighPriority,
+                      ),
+                    );
                     Navigator.pop(context);
                   } else {
                     print("Not valid");

@@ -16,20 +16,22 @@ class _TodoScreenState extends State<ToDoScreen> {
       builder: (context, NewTaskController controller, child) {
         return Center(
           child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: Row(
-                     mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
 
                       children: [
-                        Text("To Do Tasks" , style: Theme.of(context).textTheme.displayLarge)
-                        
+                        Text(
+                          "To Do Tasks",
+                          style: Theme.of(context).textTheme.displayLarge,
+                        ),
                       ],
                     ),
                   ),
@@ -38,21 +40,24 @@ class _TodoScreenState extends State<ToDoScreen> {
                       final toDoTasks = controller.newTasks
                           .where((task) => !task.isCompleted)
                           .toList();
-                           if (controller.newTasks.isEmpty || toDoTasks.isEmpty) {
-                          return Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Center(
-                                child: Text("No tasks yet. Add one!", style: Theme.of(context).textTheme.labelMedium,)
+                      if (controller.newTasks.isEmpty || toDoTasks.isEmpty) {
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Center(
+                              child: Text(
+                                "No tasks yet. Add one!",
+                                style: Theme.of(context).textTheme.labelMedium,
                               ),
-                            ],
-                          );
-                        }
+                            ),
+                          ],
+                        );
+                      }
                       return Expanded(
                         child: Column(
                           children: [
-                            SizedBox(height: 20,),
+                            SizedBox(height: 20),
                             Expanded(
                               child: ListView.separated(
                                 separatorBuilder: (context, index) =>
@@ -62,9 +67,15 @@ class _TodoScreenState extends State<ToDoScreen> {
                                   final task = toDoTasks[index];
                                   return Container(
                                     decoration: BoxDecoration(
-                                      color: Theme.of(context).colorScheme.secondaryContainer,
+                                      color: Theme.of(
+                                        context,
+                                      ).colorScheme.secondaryContainer,
                                       borderRadius: BorderRadius.circular(20),
-                                      border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer )
+                                      border: Border.all(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.onSecondaryContainer,
+                                      ),
                                     ),
                                     child: ListTile(
                                       leading: Checkbox(
@@ -76,7 +87,7 @@ class _TodoScreenState extends State<ToDoScreen> {
                                               .taskCompletion(task, value);
                                         },
                                       ),
-                                        
+
                                       title: Text(
                                         task.taskName.toString(),
                                         style: TextStyle(
@@ -84,7 +95,9 @@ class _TodoScreenState extends State<ToDoScreen> {
                                           fontSize: 17,
                                           color: task.isCompleted
                                               ? null
-                                              : Theme.of(context).colorScheme.primaryFixed,
+                                              : Theme.of(
+                                                  context,
+                                                ).colorScheme.primaryFixed,
                                           fontWeight: FontWeight.w400,
                                           decoration: task.isCompleted
                                               ? TextDecoration.lineThrough
@@ -99,7 +112,9 @@ class _TodoScreenState extends State<ToDoScreen> {
                                           fontFamily: 'Poppins',
                                           fontSize: 13,
                                           color: task.isCompleted
-                                              ? Theme.of(context).colorScheme.primaryFixedDim
+                                              ? Theme.of(
+                                                  context,
+                                                ).colorScheme.primaryFixedDim
                                               : null,
                                           fontWeight: FontWeight.w400,
                                           decoration: task.isCompleted
@@ -109,31 +124,25 @@ class _TodoScreenState extends State<ToDoScreen> {
                                           decorationThickness: 3,
                                         ),
                                       ),
-                                      trailing:
-                                                    PopupMenuButton<String>(
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .primaryFixedDim,
-                                                      onSelected: (value) {
-                                                        if (value == 'delete') {
-                                                          controller
-                                                              .deleteTask(task);
-                                                        }
-                                                      },
-                                                      itemBuilder: (context) =>
-                                                          [
-                                                            const PopupMenuItem(
-                                                              value: 'delete',
-                                                              child: Text(
-                                                                "Delete",
-                                                              ),
-                                                            ),
-                                                          ],
-                                                    ),
+                                      trailing: PopupMenuButton<String>(
+                                        color: Theme.of(
+                                          context,
+                                        ).colorScheme.primaryFixedDim,
+                                        onSelected: (value) {
+                                          if (value == 'delete') {
+                                            controller.deleteTask(task);
+                                          }
+                                        },
+                                        itemBuilder: (context) => [
+                                          const PopupMenuItem(
+                                            value: 'delete',
+                                            child: Text("Delete"),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 },
-                                
                               ),
                             ),
                           ],
@@ -145,8 +154,8 @@ class _TodoScreenState extends State<ToDoScreen> {
               ),
             ),
           ),
-                );
-  }
+        );
+      },
     );
-}
+  }
 }

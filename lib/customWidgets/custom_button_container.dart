@@ -5,9 +5,8 @@ class CustomButtonContainer extends StatelessWidget {
     super.key,
     required this.buttonText,
     required this.buttonFontSize,
-    
   });
-  
+
   final String buttonText;
   final double buttonFontSize;
   @override
