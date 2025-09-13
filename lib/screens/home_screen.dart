@@ -61,17 +61,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(
-                                "Good Morning, $userName",
-                                style: TextStyle(
-                                  fontSize: 20,
-                                  color: Theme.of(
-                                    context,
-                                  ).colorScheme.onPrimaryFixed,
-                                  //fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
+                              getGreeting(userName),
+
                               Text(
                                 "$motivationQuote",
                                 style: TextStyle(
@@ -408,27 +399,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   decorationThickness: 2,
                                                 ),
                                               ),
-                                              trailing:
-                                                    PopupMenuButton<String>(
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .primaryFixedDim,
-                                                      onSelected: (value) {
-                                                        if (value == 'delete') {
-                                                          newTaskController
-                                                              .deleteTask(task);
-                                                        }
-                                                      },
-                                                      itemBuilder: (context) =>
-                                                          [
-                                                            const PopupMenuItem(
-                                                              value: 'delete',
-                                                              child: Text(
-                                                                "Delete",
-                                                              ),
-                                                            ),
-                                                          ],
-                                                    ),
+                                              trailing: PopupMenuButton<String>(
+                                                color: Theme.of(
+                                                  context,
+                                                ).colorScheme.primaryFixedDim,
+                                                onSelected: (value) {
+                                                  if (value == 'delete') {
+                                                    newTaskController
+                                                        .deleteTask(task);
+                                                  }
+                                                },
+                                                itemBuilder: (context) => [
+                                                  const PopupMenuItem(
+                                                    value: 'delete',
+                                                    child: Text("Delete"),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           );
                                         },
@@ -478,5 +465,43 @@ class _HomeScreenState extends State<HomeScreen> {
         );
       },
     );
+  }
+
+  Widget getGreeting(String userName) {
+    final hour = DateTime.now().hour;
+
+    if (hour < 12) {
+      return Text(
+        "Good Morning, $userName",
+        style: TextStyle(
+          fontSize: 20,
+          color: Theme.of(context).colorScheme.onPrimaryFixed,
+          //fontFamily: 'Poppins',
+          fontWeight: FontWeight.w400,
+        ),
+      );
+    } else if (hour < 18) {
+      return Text(
+        "Good Afternoon, $userName",
+        style: TextStyle(
+          fontSize: 20,
+          color: Theme.of(context).colorScheme.onPrimaryFixed,
+          //fontFamily: 'Poppins',
+          fontWeight: FontWeight.w400,
+        ),
+      );
+      
+    } else {
+      return Text(
+        "Good Evening, $userName",
+        style: TextStyle(
+          fontSize: 20,
+          color: Theme.of(context).colorScheme.onPrimaryFixed,
+          //fontFamily: 'Poppins',
+          fontWeight: FontWeight.w400,
+        ),
+      );
+      
+    }
   }
 }
