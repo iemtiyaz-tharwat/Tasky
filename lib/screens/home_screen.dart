@@ -85,8 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         icon: Icon(
                           context.watch<ThemeProvider>().isDark
-                              ? Icons
-                                    .light_mode 
+                              ? Icons.light_mode 
                               : Icons.dark_mode, 
                         ),
                       ),
@@ -142,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Center(
                                 child: Text("No tasks yet. Add one!", style: TextStyle(fontSize: 16,
                                   fontFamily: "Poppins",
-                                  color: Theme.of(context).colorScheme.onPrimaryFixed
+                                  color: Theme.of(context).colorScheme.onSecondaryFixed
                                   ),)
                                 
                               ),

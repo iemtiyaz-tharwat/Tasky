@@ -18,19 +18,19 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool isDarkMode = true;
+  bool isLightMode = false;
 
  @override
   void initState() {
     super.initState();
-    loadAppMode(isDarkMode);
+    loadAppMode(isLightMode);
   }
   void loadAppMode (bool value) async {
     final preference = await SharedPreferences.getInstance();
     final appMode = preference.getBool("darkMode");
     if (appMode != null) {
       setState(() {
-        isDarkMode = appMode;
+        isLightMode = appMode;
       });
     }
   }
@@ -179,10 +179,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                       SizedBox(width: 160),
                       Switch(
-                        value: isDarkMode,
+                        value: isLightMode,
                         onChanged: (value) {
                           setState(() {
-                            isDarkMode = value;
+                            isLightMode = value;
                           });
                           appMode(value);
                           final themeMode = value ? darkModeTheme() : lightModeTheme();

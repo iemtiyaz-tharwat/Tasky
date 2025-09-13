@@ -43,8 +43,9 @@ class _TaskyAppState extends State<TaskyApp> {
     return MaterialApp(
       title: "Tasky App",
       debugShowCheckedModeBanner: false,
-      theme: themeProvider.isDark ? darkModeTheme() : lightModeTheme(),
-      themeMode: ThemeMode.system,
+      theme: lightModeTheme(),        
+      darkTheme: darkModeTheme(), 
+      themeMode: themeProvider.isDark ? ThemeMode.light : ThemeMode.dark,
       home: const TaskyName(),
     );
     },);

@@ -64,7 +64,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
               SizedBox(height: 20),
               Row(
                 children: [ Text("High Priority", style: Theme.of(context).textTheme.displayMedium,),
-                  SizedBox(width: 190),
+                  SizedBox(width: 230),
                   Switch(
                     value: _isHighPriority,
                     onChanged: (value) {

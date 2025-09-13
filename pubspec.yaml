@@ -55,11 +55,13 @@ dev_dependencies:
 flutter_native_splash:
   android: true
   ios: true
-  color: "#181818"
+  color: "#FFFFFF"
+  color_dark: "#181818"
   image: assets/images/Vector.png 
 
   android_12:
-    color: "#181818"
+    color: "#FFFFFF"
+    color_dark: "#181818"
     image: assets/images/Vector.png
 
 # For information on the generic Dart part of this file, see the
