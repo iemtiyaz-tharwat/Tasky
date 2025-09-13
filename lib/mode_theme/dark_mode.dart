@@ -4,10 +4,14 @@ import 'package:tasky/mode_colors/dark_mode_colors.dart';
 ThemeData darkModeTheme() {
   return ThemeData(
     cardColor: Color(0xff282828),
+    brightness: Brightness.dark,
+    colorScheme: ColorScheme.dark(
+      primary: AppColorDark.ColorFilter,
+      onPrimary: AppColorDark.arrowColor,
+    ),
     iconTheme: IconThemeData(color: AppColorDark.fontColor),
     appBarTheme: AppBarTheme(
       backgroundColor: AppColorDark.screenColor,
-
       titleTextStyle: TextStyle(
         color: AppColorDark.fontColor,
         fontSize: 20,
@@ -19,13 +23,13 @@ ThemeData darkModeTheme() {
     textTheme: TextTheme(
       displayLarge: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 28,
+        fontSize: 24,
         letterSpacing: 0.5,
         color: AppColorDark.fontColor,
       ),
       displayMedium: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 16,
+        fontSize: 19,
         color: AppColorDark.fontColor,
       ),
       displaySmall: TextStyle(
@@ -36,8 +40,23 @@ ThemeData darkModeTheme() {
       labelLarge: TextStyle(
         fontWeight: FontWeight.w400,
         fontSize: 20,
+        color: Color(0xffC6C6C6),
+      ),
+      labelMedium: TextStyle(
+        fontWeight: FontWeight.w400,
+        fontSize: 16,
+        color: Color(0xffC6C6C6),
+      ),
+      titleLarge: TextStyle(             //for Top Screen sentence
+        fontWeight: FontWeight.w400,
+        fontSize: 20,
+        color: Color(0xffFFFCFC),
+      ),
+      titleSmall: TextStyle(             
+        fontWeight: FontWeight.w400,
+        fontSize: 16,
         letterSpacing: 0.5,
-        color: AppColorDark.fontColor,
+        color: Colors.white,
       ),
     ),
     switchTheme: SwitchThemeData(

@@ -99,12 +99,7 @@ class _UserDetailsState extends State<UserDetails> {
                         padding: const EdgeInsets.all(20.0),
                         child: Text(
                           "$userName",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xffC6C6C6),
-                          ),
+                          style: Theme.of(context).textTheme.labelLarge,
                         ),
                       ),
                     ],
@@ -113,6 +108,7 @@ class _UserDetailsState extends State<UserDetails> {
                 SizedBox(height: 20),
                 Column(
                   children: [
+                   // Text("Motivation Quote", style: Theme.of(context).textTheme.titleLarge,)
                     CustomTextStyle(
                       text: 'Motivation Quote',
                       fontSize: 20,
@@ -123,10 +119,7 @@ class _UserDetailsState extends State<UserDetails> {
                       child: TextFormField(
                         key: motivationQuoteKey,
                         controller: _motivationQuoteController,
-                        style: TextStyle(
-                          color: Color.fromARGB(255, 252, 252, 255),
-                          fontSize: 20,
-                        ),
+                        style: Theme.of(context).textTheme.labelLarge,
                         maxLines: 5,
                         keyboardType: TextInputType.text,
                         keyboardAppearance: Brightness.dark,

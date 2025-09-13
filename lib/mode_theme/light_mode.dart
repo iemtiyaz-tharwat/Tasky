@@ -3,7 +3,12 @@ import 'package:tasky/mode_colors/light_mode_colors.dart';
 
 ThemeData lightModeTheme() {
   return ThemeData(
-    cardColor: Colors.white,
+    cardColor: Color(0xff9E9E9E),
+    brightness: Brightness.light,
+    colorScheme: ColorScheme.light(
+      primary: AppColorLight.ColorFilter,
+      onPrimary: AppColorLight.arrowColor
+    ),
     primaryColor: Colors.white,
     iconTheme: IconThemeData(color: AppColorLight.fontColor),
     appBarTheme: AppBarTheme(
@@ -20,25 +25,41 @@ ThemeData lightModeTheme() {
     textTheme: TextTheme(
       displayLarge: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 28,
+        fontSize: 24,
         letterSpacing: 0.5,
         color: AppColorLight.fontColor,
       ),
       displayMedium: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 16,
+        fontSize: 19,
         color: AppColorLight.fontColor,
+        fontFamily: "Poppins"
       ),
       displaySmall: TextStyle(
         fontWeight: FontWeight.w400,
-        fontSize: 14,
+        fontSize: 18,
         color: Color(0xffC6C6C6),
       ),
-      labelLarge: TextStyle(
+      labelLarge: TextStyle(      //into text form field
         fontWeight: FontWeight.w400,
         fontSize: 20,
+        color: Color(0xff9E9E9E),
+      ),
+      labelMedium: TextStyle(        //for "No Tasks yet" sentence
+        fontWeight: FontWeight.w400,
+        fontSize: 16,
+        color: Color(0xff9E9E9E),
+      ),
+      titleLarge: TextStyle(             
+        fontWeight: FontWeight.w400,
+        fontSize: 20,
+        color: Color(0xff9E9E9E),
+      ),
+      titleSmall: TextStyle(             //for motivation quote in profile screen
+        fontWeight: FontWeight.w400,
+        fontSize: 16,
         letterSpacing: 0.5,
-        color: AppColorLight.fontColor,
+        color: Color(0xff3A4640),
       ),
     ),
 

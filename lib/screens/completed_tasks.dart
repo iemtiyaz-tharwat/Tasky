@@ -28,11 +28,8 @@ class _CompletedTasksState extends State<CompletedTasks> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CustomTextStyle(
-                          text: "Completed Tasks",
-                          fontSize: 20,
-                          fontFamily: "Poppins",
-                        ),
+                        Text("Completed Tasks", style: Theme.of(context).textTheme.displayLarge,)
+                        
                       ],
                     ),
                   ),
@@ -45,11 +42,8 @@ class _CompletedTasksState extends State<CompletedTasks> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Center(
-                                child: CustomTextStyle(
-                                  text: "No tasks yet. Add one!",
-                                  fontSize: 16,
-                                  fontFamily: "Poppins",
-                                ),
+                                child: Text("No tasks yet. Add one!", style: Theme.of(context).textTheme.labelMedium,)
+                                 
                               ),
                             ],
                           );

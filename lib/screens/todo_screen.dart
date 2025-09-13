@@ -29,11 +29,8 @@ class _TodoScreenState extends State<ToDoScreen> {
                      mainAxisAlignment: MainAxisAlignment.center,
 
                       children: [
-                        CustomTextStyle(
-                          text: "To Do Tasks",
-                          fontSize: 20,
-                          fontFamily: "Poppins",
-                        ),
+                        Text("To Do Tasks" , style: Theme.of(context).textTheme.displayLarge)
+                        
                       ],
                     ),
                   ),
@@ -48,11 +45,7 @@ class _TodoScreenState extends State<ToDoScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Center(
-                                child: CustomTextStyle(
-                                  text: "No tasks yet. Add one!",
-                                  fontSize: 16,
-                                  fontFamily: "Poppins",
-                                ),
+                                child: Text("No tasks yet. Add one!", style: Theme.of(context).textTheme.labelMedium,)
                               ),
                             ],
                           );

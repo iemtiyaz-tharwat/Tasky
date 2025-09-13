@@ -19,19 +19,19 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  bool isDarkMode = false;
+  bool isLightMode = true;
 
  @override
   void initState() {
     super.initState();
-    loadAppMode(isDarkMode);
+    loadAppMode(isLightMode);
   }
   void loadAppMode (bool value) async {
     final preference = await SharedPreferences.getInstance();
     final appMode = preference.getBool("darkMode");
     if (appMode != null) {
       setState(() {
-        isDarkMode = appMode;
+        isLightMode = appMode;
       });
     }
   }
@@ -59,17 +59,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       Navigator.pop(context);
                     },
                     icon: Icon(Icons.arrow_back),
-                    color: Colors.white,
+                    color: Theme.of(context).colorScheme.primary,
                   ),
                   SizedBox(width: 7),
                   Text(
                     "My Profile",
-                    style: TextStyle(
-                      fontSize: 22,
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w600,
-                      color: Color(0xffFFFCFC),
-                    ),
+                     style: Theme.of(context).textTheme.displayLarge,
                   ),
                 ],
               ),
@@ -78,7 +73,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 child: Stack(
                   children: [
                     CircleAvatar(
-                      backgroundColor: Color(0xff181818),
+                      backgroundColor: Theme.of(context).cardColor,
                       radius: 85,
                       child: Icon(Icons.person, size: 85, color: Colors.white),
                     ),
@@ -88,8 +83,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       child: Container(
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
-                          color: Color(0xff282828),
+                          color: Theme.of(context).cardColor,
                           shape: BoxShape.circle,
+                          
                         ),
                         child: Icon(Icons.camera_alt),
                       ),
@@ -97,6 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
+              SizedBox(height: 5,),
               Center(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -107,12 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Text(
                           "$userName",
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
+                          style: Theme.of(context).textTheme.displayMedium,
                         ),
                       ],
                     ),
@@ -121,12 +113,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       children: [
                         Text(
                           "$motivationQuote",
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontFamily: "Poppins",
-                            fontWeight: FontWeight.w400,
-                            color: Color(0xffC6C6C6),
-                          ),
+                          style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ],
                     ),
@@ -141,12 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     children: [
                       Text(
                         "Profile Info",
-                        style: TextStyle(
-                          fontSize: 24,
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.w400,
-                          color: Color(0xffFFFCFC),
-                        ),
+                        style:  Theme.of(context).textTheme.displayLarge,
                       ),
                     ],
                   ),
@@ -154,19 +136,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Row(
                     children: [
                       SvgPicture.asset(
-                        "assets/images/user-03.svg",
+                        "assets/images/user_light_mode.svg",
                         width: 28,
                         height: 28,
+                        colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
                       ),
                       SizedBox(width: 20),
                       Text(
                         "User Details",
-                        style: TextStyle(
-                          fontSize: 19,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Poppins",
-                          color: Colors.white,
-                        ),
+                        style: Theme.of(context).textTheme.displayMedium,
                       ),
                       SizedBox(width: 160),
                       IconButton(
@@ -181,7 +159,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           );
                         },
                         icon: Icon(Icons.arrow_forward),
-                        color: Color(0xffC6C6C6),
+                        color: Theme.of(context).colorScheme.onPrimary,
                         iconSize: 28,
                       ),
                     ],
@@ -193,23 +171,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         "assets/images/moon-01.svg",
                         width: 28,
                         height: 28,
+                        colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
                       ),
                       SizedBox(width: 20),
                       Text(
                         "Dark Mode",
-                        style: TextStyle(
-                          fontSize: 19,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Poppins",
-                          color: Colors.white,
-                        ),
+                        style: Theme.of(context).textTheme.displayMedium
                       ),
                       SizedBox(width: 160),
                       Switch(
-                        value: isDarkMode,
+                        value: isLightMode,
                         onChanged: (value) {
                           setState(() {
-                            isDarkMode = value;
+                            isLightMode = value;
                           });
                           appMode(value);
                           final themeMode = value ? darkModeTheme() : lightModeTheme();
@@ -229,16 +203,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         "assets/images/Leading element.svg",
                         width: 28,
                         height: 28,
+                        colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.primary, BlendMode.srcIn),
                       ),
                       SizedBox(width: 20),
                       Text(
                         "Log Out",
-                        style: TextStyle(
-                          fontSize: 19,
-                          fontWeight: FontWeight.w400,
-                          fontFamily: "Poppins",
-                          color: Colors.white,
-                        ),
+                        style: Theme.of(context).textTheme.displayMedium
                       ),
                       SizedBox(width: 200),
                       IconButton(
@@ -253,7 +223,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           );
                         },
                         icon: Icon(Icons.arrow_forward),
-                        color: Color(0xffC6C6C6),
+                        color: Theme.of(context).colorScheme.onPrimary,
                         iconSize: 28,
                       ),
                     ],
