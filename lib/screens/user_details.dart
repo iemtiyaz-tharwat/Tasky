@@ -65,33 +65,27 @@ class _UserDetailsState extends State<UserDetails> {
                         Navigator.pop(context);
                       },
                       icon: Icon(Icons.arrow_back),
-                      color: Colors.white,
+                      color: Theme.of(context).colorScheme.primary,
                     ),
                     SizedBox(width: 7),
                     Text(
                       "User Details",
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w400,
-                        color: Color(0xffFFFCFC),
-                      ),
+                      style: Theme.of(context).textTheme.displayLarge
                     ),
                   ],
                 ),
                 SizedBox(height: 40),
-                CustomTextStyle(
-                  text: 'User Name',
-                  fontSize: 20,
-                  fontFamily: 'Poppins',
-                ),
+                Text("User Name" , style: Theme.of(context).textTheme.displayMedium
+                    ),
+                
                 SizedBox(height: 10),
                 Container(
                   height: 66,
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: const Color(0xFF282828),
+                    color: Theme.of(context).colorScheme.secondaryContainer,
                     borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer )
                   ),
                   child: Row(
                     children: [
@@ -107,13 +101,9 @@ class _UserDetailsState extends State<UserDetails> {
                 ),
                 SizedBox(height: 20),
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                   // Text("Motivation Quote", style: Theme.of(context).textTheme.titleLarge,)
-                    CustomTextStyle(
-                      text: 'Motivation Quote',
-                      fontSize: 20,
-                      fontFamily: 'Poppins',
-                    ),
+                    Text("Motivation Quote", style: Theme.of(context).textTheme.displayMedium,),
                     SizedBox(height: 10),
                     Form(
                       child: TextFormField(
@@ -122,21 +112,22 @@ class _UserDetailsState extends State<UserDetails> {
                         style: Theme.of(context).textTheme.labelLarge,
                         maxLines: 5,
                         keyboardType: TextInputType.text,
-                        keyboardAppearance: Brightness.dark,
-                        cursorColor: Colors.white,
+                        cursorColor: Theme.of(context).colorScheme.surface,
                         cursorHeight: 30,
                         cursorRadius: const Radius.circular(40),
                         decoration: InputDecoration(
                           filled: true,
-                          fillColor: Color(0xff282828),
+                          fillColor: Theme.of(context).colorScheme.secondaryContainer,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(color: Theme.of(context).colorScheme.onSecondaryContainer),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
+                            borderSide: BorderSide(color: Theme.of(context).colorScheme.onSecondaryContainer),
                           ),
                           hintText: _hintText,
                           hintStyle: TextStyle(

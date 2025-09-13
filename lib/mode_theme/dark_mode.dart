@@ -6,8 +6,11 @@ ThemeData darkModeTheme() {
     cardColor: Color(0xff282828),
     brightness: Brightness.dark,
     colorScheme: ColorScheme.dark(
-      primary: AppColorDark.ColorFilter,
+      primary: AppColorDark.ColorFilter,   
       onPrimary: AppColorDark.arrowColor,
+      secondaryContainer: AppColorDark.containerColor,
+      surface: AppColorDark.cursorColor,
+      
     ),
     iconTheme: IconThemeData(color: AppColorDark.fontColor),
     appBarTheme: AppBarTheme(

@@ -7,7 +7,11 @@ ThemeData lightModeTheme() {
     brightness: Brightness.light,
     colorScheme: ColorScheme.light(
       primary: AppColorLight.ColorFilter,
-      onPrimary: AppColorLight.arrowColor
+      onPrimary: AppColorLight.arrowColor,
+      secondaryContainer: AppColorLight.containerColor,
+      onSecondaryContainer: AppColorLight.containerBorder,
+      surface: AppColorLight.cursorColor,
+      
     ),
     primaryColor: Colors.white,
     iconTheme: IconThemeData(color: AppColorLight.fontColor),
@@ -43,7 +47,7 @@ ThemeData lightModeTheme() {
       labelLarge: TextStyle(      //into text form field
         fontWeight: FontWeight.w400,
         fontSize: 20,
-        color: Color(0xff9E9E9E),
+        color: Color.fromARGB(255, 109, 109, 109),
       ),
       labelMedium: TextStyle(        //for "No Tasks yet" sentence
         fontWeight: FontWeight.w400,

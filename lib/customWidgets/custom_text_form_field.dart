@@ -17,26 +17,24 @@ class Customtextformfield extends StatelessWidget {
     return SizedBox(
       //height: height,
       child: TextFormField(
-        style: TextStyle(
-          color: Color.fromARGB(255, 252, 252, 255),
-          fontSize: 20,
-        ),
+        style: Theme.of(context).textTheme.labelLarge,
         controller: controller,
         maxLines: maxLines,
         keyboardType: TextInputType.text,
-        keyboardAppearance: Brightness.dark,
-        cursorColor: Colors.white,
+        cursorColor: Theme.of(context).colorScheme.surface,
         cursorHeight: 30,
         cursorRadius: const Radius.circular(40),
         decoration: InputDecoration(
           filled: true,
-          fillColor: Color(0xff282828),
+          fillColor: Theme.of(context).colorScheme.secondaryContainer,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.onSecondaryContainer),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(20),
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.onSecondaryContainer),
           ),
           hintText: hintText,
           hintStyle: TextStyle(

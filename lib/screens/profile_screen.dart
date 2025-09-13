@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:tasky/main.dart';
 import 'package:tasky/mode_theme/dark_mode.dart';
 import 'package:tasky/mode_theme/light_mode.dart';
 import 'package:tasky/provider/motivation_quote_controller.dart';

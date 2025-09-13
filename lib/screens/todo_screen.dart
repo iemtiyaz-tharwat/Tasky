@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:tasky/customWidgets/custom_text_style.dart';
 import 'package:tasky/provider/custom_provider.dart';
 
 class ToDoScreen extends StatefulWidget {
