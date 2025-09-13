@@ -63,8 +63,9 @@ class _TodoScreenState extends State<ToDoScreen> {
                                   return Container(
                                     height: 70,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xff282828),
+                                      color: Theme.of(context).colorScheme.secondaryContainer,
                                       borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer )
                                     ),
                                     child: ListTile(
                                       leading: Checkbox(
@@ -83,9 +84,9 @@ class _TodoScreenState extends State<ToDoScreen> {
                                           fontFamily: "Poppins",
                                           fontSize: 17,
                                           color: task.isCompleted
-                                              ? Color(0xffA0A0A0)
-                                              : Color(0xffFFFCFC),
-                                          fontWeight: FontWeight.w600,
+                                              ? null
+                                              : Theme.of(context).colorScheme.primaryFixed,
+                                          fontWeight: FontWeight.w400,
                                           decoration: task.isCompleted
                                               ? TextDecoration.lineThrough
                                               : TextDecoration.none,
@@ -99,9 +100,9 @@ class _TodoScreenState extends State<ToDoScreen> {
                                           fontFamily: 'Poppins',
                                           fontSize: 13,
                                           color: task.isCompleted
-                                              ? Color(0xffA0A0A0)
-                                              : Color(0xffFFFCFC),
-                                          fontWeight: FontWeight.w600,
+                                              ? Theme.of(context).colorScheme.primaryFixedDim
+                                              : null,
+                                          fontWeight: FontWeight.w400,
                                           decoration: task.isCompleted
                                               ? TextDecoration.lineThrough
                                               : TextDecoration.none,

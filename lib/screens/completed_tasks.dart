@@ -61,11 +61,14 @@ class _CompletedTasksState extends State<CompletedTasks> {
                                   return Container(
                                     height: 70,
                                     decoration: BoxDecoration(
-                                      color: const Color(0xff282828),
+                                      color: Theme.of(context).colorScheme.secondaryContainer,
                                       borderRadius: BorderRadius.circular(20),
+                                      border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer )
                                     ),
-                                    child: ListTile(
-                                      leading: Checkbox(
+                                    child: Row(
+                                      children: [
+                                        SizedBox(width: 5,),
+                                        Checkbox(
                                         value: task.isCompleted,
                                         activeColor: Color(0xff15B86C),
                                         onChanged: (value) {
@@ -73,41 +76,27 @@ class _CompletedTasksState extends State<CompletedTasks> {
                                               .read<NewTaskController>()
                                               .taskCompletion(task, value);
                                         },
+                                        checkColor: Theme.of(context).colorScheme.secondaryContainer,
                                       ),
-                                        
-                                      title: Text(
+                                      SizedBox(width: 10,),
+                                      Text(
                                         task.taskName.toString(),
                                         style: TextStyle(
                                           fontFamily: "Poppins",
                                           fontSize: 17,
                                           color: task.isCompleted
-                                              ? Color(0xffA0A0A0)
-                                              : Color(0xffFFFCFC),
+                                              ? Theme.of(context).colorScheme.primaryFixedDim
+                                              : null,
                                           fontWeight: FontWeight.w600,
                                           decoration: task.isCompleted
                                               ? TextDecoration.lineThrough
-                                              : TextDecoration.none,
-                                          decorationColor: Colors.grey.shade800,
-                                          decorationThickness: 3,
+                                              : null,
+                                          decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
+                                          decorationThickness: 2,
                                         ),
                                       ),
-                                      subtitle: Text(
-                                        task.taskDescription.toString(),
-                                        style: TextStyle(
-                                          fontFamily: 'Poppins',
-                                          fontSize: 13,
-                                          color: task.isCompleted
-                                              ? Color(0xffA0A0A0)
-                                              : Color(0xffFFFCFC),
-                                          fontWeight: FontWeight.w600,
-                                          decoration: task.isCompleted
-                                              ? TextDecoration.lineThrough
-                                              : TextDecoration.none,
-                                          decorationColor: Colors.grey.shade800,
-                                          decorationThickness: 3,
-                                        ),
-                                      ),
-                                    ),
+                                      ],
+                                    )
                                   );
                                 },
                                 

@@ -129,12 +129,7 @@ class _UserDetailsState extends State<UserDetails> {
                             borderSide: BorderSide(color: Theme.of(context).colorScheme.onSecondaryContainer),
                           ),
                           hintText: _hintText,
-                          hintStyle: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontSize: 18,
-                            color: Color.fromARGB(255, 109, 109, 109),
-                            fontWeight: FontWeight.w400,
-                          ),
+                          hintStyle: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),
                     ),

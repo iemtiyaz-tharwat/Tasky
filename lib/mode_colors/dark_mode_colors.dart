@@ -8,4 +8,7 @@ class AppColorDark {
   static const arrowColor = Color(0xffC6C6C6);
   static const containerColor = Color(0xFF282828);
   static const cursorColor = Colors.white;
+  static const listTileTitleColorWhenIsNotCompleted = Color(0xffFFFCFC);
+  static const listTileTitleColorWhenIsCompleted = Color(0xffA0A0A0);
+  
 }

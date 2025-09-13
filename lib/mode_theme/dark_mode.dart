@@ -10,7 +10,8 @@ ThemeData darkModeTheme() {
       onPrimary: AppColorDark.arrowColor,
       secondaryContainer: AppColorDark.containerColor,
       surface: AppColorDark.cursorColor,
-      
+      primaryFixed: AppColorDark.listTileTitleColorWhenIsNotCompleted,
+      primaryFixedDim: AppColorDark.listTileTitleColorWhenIsCompleted,
     ),
     iconTheme: IconThemeData(color: AppColorDark.fontColor),
     appBarTheme: AppBarTheme(
@@ -55,9 +56,15 @@ ThemeData darkModeTheme() {
         fontSize: 20,
         color: Color(0xffFFFCFC),
       ),
-      titleSmall: TextStyle(             
+      titleMedium: TextStyle(             //for hint text
         fontWeight: FontWeight.w400,
-        fontSize: 16,
+        fontSize: 18,
+        letterSpacing: 0.5,
+        color: Color.fromARGB(255, 109, 109, 109),
+      ),
+      titleSmall: TextStyle(             //for motivation quote in profile screen
+        fontWeight: FontWeight.w400,
+        fontSize: 18,
         letterSpacing: 0.5,
         color: Colors.white,
       ),

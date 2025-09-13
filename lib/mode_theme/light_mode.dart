@@ -11,6 +11,8 @@ ThemeData lightModeTheme() {
       secondaryContainer: AppColorLight.containerColor,
       onSecondaryContainer: AppColorLight.containerBorder,
       surface: AppColorLight.cursorColor,
+      primaryFixed: AppColorLight.listTileTitleColorWhenIsNotCompleted,
+      primaryFixedDim: AppColorLight.listTileTitleColorWhenIsCompleted,
 
     ),
     primaryColor: Colors.white,
@@ -44,10 +46,10 @@ ThemeData lightModeTheme() {
         fontSize: 18,
         color: Color(0xffC6C6C6),
       ),
-      labelLarge: TextStyle(      //into text form field
+      labelLarge: TextStyle(      //text form field filling
         fontWeight: FontWeight.w400,
         fontSize: 20,
-        color: Color.fromARGB(255, 109, 109, 109),
+        color: Color(0xff3A4640),
       ),
       labelMedium: TextStyle(        //for "No Tasks yet" sentence
         fontWeight: FontWeight.w400,
@@ -59,9 +61,15 @@ ThemeData lightModeTheme() {
         fontSize: 20,
         color: Color(0xff9E9E9E),
       ),
+      titleMedium: TextStyle(             //for hint text
+        fontWeight: FontWeight.w400,
+        fontSize: 18,
+        letterSpacing: 0.5,
+        color: Color.fromARGB(255, 109, 109, 109),
+      ),
       titleSmall: TextStyle(             //for motivation quote in profile screen
         fontWeight: FontWeight.w400,
-        fontSize: 16,
+        fontSize: 18,
         letterSpacing: 0.5,
         color: Color(0xff3A4640),
       ),
