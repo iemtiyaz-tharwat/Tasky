@@ -79,23 +79,26 @@ class _CompletedTasksState extends State<CompletedTasks> {
                                         checkColor: Theme.of(context).colorScheme.secondaryContainer,
                                       ),
                                       SizedBox(width: 10,),
-                                      Text(
-                                        task.taskName.toString(),
-                                        style: TextStyle(
-                                          fontFamily: "Poppins",
-                                          fontSize: 17,
-                                          color: task.isCompleted
-                                              ? Theme.of(context).colorScheme.primaryFixedDim
-                                              : null,
-                                          fontWeight: FontWeight.w600,
-                                          decoration: task.isCompleted
-                                              ? TextDecoration.lineThrough
-                                              : null,
-                                          decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
-                                          decorationThickness: 2,
+                                      SizedBox(
+                                        width: 90,
+                                        child: Text(
+                                          task.taskName.toString(),
+                                          style: TextStyle(
+                                            fontFamily: "Poppins",
+                                            fontSize: 17,
+                                            color: task.isCompleted
+                                                ? Theme.of(context).colorScheme.primaryFixedDim
+                                                : null,
+                                            fontWeight: FontWeight.w600,
+                                            decoration: task.isCompleted
+                                                ? TextDecoration.lineThrough
+                                                : null,
+                                            decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
+                                            decorationThickness: 2,
+                                          ),
                                         ),
                                       ),
-                                      SizedBox(width: 224,),
+                                      const SizedBox(width: 160,),
                                                     PopupMenuButton<String>(
                                                       color: Theme.of(context)
                                                           .colorScheme
