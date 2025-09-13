@@ -156,8 +156,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         width: double.infinity,
                                     padding: const EdgeInsets.all(16),
                                         decoration: BoxDecoration(
-                                          color: const Color(0xFF282828),
+                                          color: Theme.of(context).colorScheme.secondaryContainer,
                                           borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer )
                                         ),
                                         child: Column(
                                         
@@ -182,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         activeColor: Color(
                                                           0xff15B86C,
                                                         ),
-                                                        
+                                                        checkColor: Theme.of(context).colorScheme.secondaryContainer,
                                                         onChanged: (value) {
                                                           context
                                                               .read< NewTaskController >().taskCompletion(task, value,
@@ -195,15 +196,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         style: TextStyle(
                                                           fontFamily: "Poppins",
                                                           fontSize: 16,
-                                                          color: task.isCompleted? Color(0xffA0A0A0) : Color(0xffFFFCFC),
+                                                          color: task.isCompleted? Theme.of(context).colorScheme.primaryFixedDim : Theme.of(context).colorScheme.primaryFixed,
                                                           fontWeight: FontWeight.w600,
                                                           decoration: task.isCompleted
                                                               ? TextDecoration
                                                                     .lineThrough
                                                               : TextDecoration.none,
-                                                          decorationColor:
-                                                              Colors.grey.shade800,
-                                                          decorationThickness: 3,
+                                                          decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
+                                          decorationThickness: 2,
                                                         ),
                                                       ),
                                                       subtitle: Text(
@@ -212,15 +212,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                         style: TextStyle(
                                                           fontFamily: 'Poppins',
                                                           fontSize: 13,
-                                                          color: task.isCompleted? Color(0xffA0A0A0) : Color(0xffFFFCFC),
+                                                          color: task.isCompleted?Theme.of(context).colorScheme.primaryFixedDim : Theme.of(context).colorScheme.primaryFixed,
                                                           fontWeight: FontWeight.w600,
                                                           decoration: task.isCompleted
                                                               ? TextDecoration
                                                                     .lineThrough
                                                               : TextDecoration.none,
-                                                          decorationColor:
-                                                              Colors.grey.shade800,
-                                                          decorationThickness: 3,
+                                                          decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
+                                          decorationThickness: 2,
                                                         ),
                                                       ),
                                                     ),
@@ -234,11 +233,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                       const SizedBox(height: 24),
                                     ],
                                     if (notHighPriorityTasksList.isNotEmpty) ...[
-                                      const CustomTextStyle(
-                                        text: "My Tasks",
-                                        fontSize: 21,
+                                       Text("My Tasks", style: TextStyle(fontSize: 21,
                                         fontFamily: "Poppins",
-                                      ),
+                                        fontWeight: FontWeight.w400,
+                                        color: Theme.of(context).colorScheme.onPrimaryFixed
+                                        ),),
+                                      
                                       const SizedBox(height: 24),
                                       ListView.separated(
                                         shrinkWrap: true,
@@ -251,14 +251,16 @@ class _HomeScreenState extends State<HomeScreen> {
                                           return Container(
                                             height: 70,
                                             decoration: BoxDecoration(
-                                              color: const Color(0xff282828),
-                                              borderRadius: BorderRadius.circular(20),
-                                            ),
+                                          color: Theme.of(context).colorScheme.secondaryContainer,
+                                          borderRadius: BorderRadius.circular(20),
+                                          border: Border.all(color: Theme.of(context).colorScheme.onSecondaryContainer )
+                                        ),
                                 
                                             child: ListTile(
                                               leading: Checkbox(
                                                 value: task.isCompleted,
                                                 activeColor: Color(0xff15B86C),
+                                                checkColor: Theme.of(context).colorScheme.secondaryContainer,
                                                 onChanged: (value) {
                                                   context
                                                       .read<NewTaskController>()
@@ -271,13 +273,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: TextStyle(
                                                   fontFamily: "Poppins",
                                                   fontSize: 17,
-                                                  color: task.isCompleted? Color(0xffA0A0A0) : Color(0xffFFFCFC),
-                                                  fontWeight: FontWeight.w600,
+                                                  color: task.isCompleted? Theme.of(context).colorScheme.primaryFixedDim : Theme.of(context).colorScheme.primaryFixed,
                                                   decoration: task.isCompleted
                                                       ? TextDecoration.lineThrough
                                                       : TextDecoration.none,
-                                                  decorationColor: Colors.grey.shade800,
-                                                  decorationThickness: 3,
+                                                  decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
+                                          decorationThickness: 2,
                                                   
                                                 ),
                                               ),
@@ -286,13 +287,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                                 style: TextStyle(
                                                   fontFamily: 'Poppins',
                                                   fontSize: 13,
-                                                  color: task.isCompleted? Color(0xffA0A0A0) : Color(0xffFFFCFC),
+                                                  color: task.isCompleted? Theme.of(context).colorScheme.primaryFixedDim : Theme.of(context).colorScheme.primaryFixed,
                                                   fontWeight: FontWeight.w600,
                                                   decoration: task.isCompleted
                                                       ? TextDecoration.lineThrough
                                                       : TextDecoration.none,
-                                                  decorationColor: Colors.grey.shade800,
-                                                  decorationThickness: 3,
+                                                  decorationColor: Theme.of(context).colorScheme.primaryFixedDim,
+                                          decorationThickness: 2,
                                                 ),
                                               ),
                                             ),

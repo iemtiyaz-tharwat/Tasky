@@ -36,7 +36,7 @@ ThemeData lightModeTheme() {
         letterSpacing: 0.5,
         color: AppColorLight.fontColor,
       ),
-      displayMedium: TextStyle(
+      displayMedium: TextStyle(          //for sided titles
         fontWeight: FontWeight.w400,
         fontSize: 19,
         color: AppColorLight.fontColor,
